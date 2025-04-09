@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_registration_form" model="ir.ui.view">
+        <field name="name">ums.registration.form</field>
+        <field name="model">ums.registration</field>
+        <field name="arch" type="xml">
+            <form string="register student">
+                <header>
+                    <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"
+                            states="draft"/>
+                    <button string="Cancel" name="action_cancel" type="object" states="draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="student"/>
+                        </group>
+                        <group>
+                            <field name="registration_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="college_id" force_save="1"/>
+                            <field name="program_id" force_save="1" readonly="1"/>
+                            <field name="level_id" force_save="1" readonly="1"/>
+                            <field name="department_id" force_save="1" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="class_id" force_save="1" readonly="1"/>
+                            <field name="academic_year" force_save="1" readonly="1"/>
+                            <field name="semester_id" force_save="1" readonly="1"/>
+                            <field name="specialist_id" force_save="1" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ums_registration_tree" model="ir.ui.view">
+        <field name="name">ums.registration.tree</field>
+        <field name="model">ums.registration</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="state=='draft'"
+                  decoration-warning="state=='cancel'"
+                  decoration-success="state=='confirm'">
+                <field name="student"/>
+                <field name="college_id" invisible="1"/>
+                <field name="program_id"/>
+                <field name="level_id"/>
+                <field name="semester_id"/>
+                <field name="registration_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ums_registration_search" model="ir.ui.view">
+        <field name="name">ums.registration.search</field>
+        <field name="model">ums.registration</field>
+        <field name="arch" type="xml">
+            <search string="Students Registration">
+                <field name="name"/>
+                <field name="student" operator="child_of"/>
+                <field name="class_id"/>
+                <field name="program_id"/>
+                <field name="department_id"/>
+                <field name="specialist_id"/>
+                <field name="registration_date" string="Registration Date"/>
+                <separator/>
+                <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                <filter name="confirmed" string="Confirmed" domain="[('state','=','confirm')]"/>
+                <filter name="canceled" string="Canceled" domain="[('state','=','cancel')]"/>
+                <filter name="registration_date" string="Registration Date" date="registration_date"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_class" string="Class" context="{'group_by': 'class_id'}"/>
+                    <filter name="group_by_level" string="Level" context="{'group_by':'level_id'}"/>
+                    <filter name="group_by_semester" string="Semester" context="{'group_by':'semester_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="department_id" icon="fa-users" string="Departments" enable_counters="1"/>
+                    <field name="specialist_id" icon="fa-users" string="specialists" enable_counters="1"/>
+                    <field name="program_id" icon="fa-users" string="Programs" enable_counters="1"/>
+                    <field name="class_id" icon="fa-users" string="Classes" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ums_registration" model="ir.actions.act_window">
+        <field name="name">Student Registration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.registration</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register Student
+            </p>
+        </field>
+    </record>
+</odoo>
+

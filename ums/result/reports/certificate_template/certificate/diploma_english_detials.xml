@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <template id="print_diploma_english">
+            <t t-call="web.basic_layout" >
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <!-- <div class="oe_structure"/> -->
+                        <t t-foreach="docs" t-as="o">
+                            <div style=" 
+                                font-family: Nakula; 
+                                font-size: 10px; ">
+                                <table width="100%" style=" font-family:KacstOne;">
+                                    <tr>
+                                        <td width="25%" style="text-align:right;"></td>
+                                        <td style="text-align:center; width: 50%;"><span style="font-family: KacstOne; font-size:14px;">Faculty of</span>
+                                            <span style="font-family: KacstOne; font-size:14px;" t-field="o.coll_spa"/>
+                                            <br/>
+                                            <span style="font-family: KacstOne;">Fax:0571822222 / Tel:0120793680</span>
+                                        </td>
+
+                                        <td style="text-align:left; width: 25%;">
+                                            <span style="font-size: 12px; font-family: KacstOne;">Student No : </span>
+                                            <span style=" font-family:URW Bookman; font-size: 12px;" t-field="o.university_code"/>
+                                        </td>
+                                        
+                                    </tr>
+                                </table>
+                                <table width="100%" height="100%">
+                                    <tr>
+                                        <td colspan="3" width="90%" height="90">
+                                            <div style="margin:10px; 
+                                                width:94%; 
+                                                padding:8px;
+                                                margin-left:33px;
+                                                border-top: 2px solid black ">
+                                                <span style=" font-family:Nakula; font-size:16px;"><span style="padding-left:15px;"/>
+                                                This is to certify that 
+                                                <span style="font-weight: bold;">MOHAMEDALFATIH ESAMALDEEN FARAH YAHYA (Sudanese)</span>
+                                                 has been awarded on <span style="font-weight: bold;">20/02/2020</span> 
+                                                 the degree of Diploma in
+                                                <span style="font-weight: bold;" t-field="o.uni_coll.code">(Three Years)</span>
+                                                <span style="font-weight: bold;">Class Third</span> 
+                                                 . The result he/she has obtained are as fllows:</span>
+                                               
+                                            </div>
+                                            <div style="margin:10px 0px -10px 33px; 
+                                                width:94%; 
+                                                padding:8px;">
+                                                <table align="center" width="100%" height="1" >
+                                                    <tr>
+                                                        <td style="font-size:12px; text-align:center;">First Years 2014/2013 </td>
+                                                        <td style="font-size:12px; text-align:center;"> Second Years 2015/2014</td>
+                                                    </tr>
+                                                </table>
+                                                <table align="left"  cellpadding="10" width="48%" border='2'>
+                                                    <thead style="display: table-row-group; font-size:10px;">
+                                                        <tr>
+                                                            <th style="border:1px solid #666; background-color:lightgrey; text-align:center; width:80%" >
+                                                                Subject
+                                                            </th>
+                                                            <th style="border:1px solid #666 ;background-color:lightgrey; text-align:center; width:20%">
+                                                                Grade
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr t-foreach="docs.list_one_id" t-as="o">
+                                                            <td style="border:1px solid #666; text-align:right; font-size:10px; padding-left:5px; width:80%">
+                                                                <span t-field="o.subject_name" />
+                                                            </td>
+                                                            <td style="border:1px solid #666; text-align:center;  width:20%">
+                                                                <span t-field="o.degree_id" />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <footer>
+                                                        <td style="border:1px solid #666;  background-color:lightgrey; text-align:center; width:80%">
+                                                            <span > Ceneral Average</span>
+                                                        </td>
+                                                        <td style="border:1px solid #666; background-color:lightgrey; text-align:center; width:20%">
+                                                            <span> C </span>
+                                                        </td>
+                                                    </footer>
+                                                </table>
+                                                <table align="right"  cellpadding="10" width="48%" border='1'>
+                                                        <thead style="display: table-row-group">
+                                                        <tr>
+                                                            <th style="border:1px solid #666; background-color:lightgrey; text-align:center; width:80%" >
+                                                                Subject
+                                                            </th>
+                                                            <th style="border:1px solid #666 ;background-color:lightgrey; text-align:center; width:20%">
+                                                                Grade
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr t-foreach="docs.list_one_id" t-as="o">
+                                                            <td style="border:1px solid #666; text-align:right; padding-left:5px; width:80%">
+                                                                <span t-field="o.subject_name" />
+                                                            </td>
+                                                            <td style="border:1px solid #666; text-align:center; width:20%">
+                                                                <span t-field="o.degree_id" />
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    </tbody>
+                                                    <footer>
+                                                        <td style="border:1px solid #666;  background-color:lightgrey; text-align:center; width:80%">
+                                                            <span > Ceneral Average</span>
+                                                        </td>
+                                                        <td style="border:1px solid #666; background-color:lightgrey; text-align:center; width:20%">
+                                                            <span> C </span>
+                                                        </td>
+                                                    </footer>
+                                                </table>
+                                            </div><br/><br/><br/>
+                                            <table align="center" width="100%" height="1">
+                                                <tr>
+                                                    <td style="font-size:12px; text-align:center;">First Years 2014/2013 </td>
+                                                </tr>
+                                            </table>
+                                            <table align="center" cellpadding="10" width="48%" border='1' style="margin: 0px 170px;">
+                                                    <thead style="display: table-row-group">
+                                                    <tr>
+                                                        <th style="border:1px solid #666; background-color:lightgrey; text-align:center; width:80%" >
+                                                            Subject
+                                                        </th>
+                                                        <th style="border:1px solid #666 ;background-color:lightgrey; text-align:center; width:20%">
+                                                            Grade
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr t-foreach="docs.list_one_id" t-as="o">
+                                                        <td style="border:1px solid #666; text-align:right; padding-left:5px; width:80%">
+                                                            <span t-field="o.subject_name" />
+                                                        </td>
+                                                        <td style="border:1px solid #666; text-align:center; width:20%">
+                                                            <span t-field="o.degree_id" />
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                </tbody>
+                                                <footer>
+                                                    <td style="border:1px solid #666; background-color:lightgrey; text-align:center; width:80%">
+                                                        <span > Ceneral Average</span>
+                                                    </td>
+                                                    <td style="border:1px solid #666; background-color:lightgrey; text-align:center; width:20%">
+                                                        <span> C </span>
+                                                    </td>
+                                                </footer>
+                                            </table>
+                                            <br/><span><b>Key</b></span>
+                                            <table align="center" width="100%" height="1" style="border:0px solid black;" >
+                                                <tr style="background-color:lightgrey; padding:5px;">
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;  padding:3px;">A</td>
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666; ">B+</td>
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;">B </td>
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;">C </td>
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;">C* </td>
+                                                </tr>
+                                                <tr >
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;  padding:3px;">80-100 </td>
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;">79-70 </td>
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;">69-60 </td>
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;">59-50</td>
+                                                    <td style="font-size:12px; text-align:center; border:1px solid #666;">Pass After Supper Mentary</td>
+                                                </tr>
+                                            </table>
+                                            <div style="text-align:right;"> <span><u>Date :21/09/2022</u></span></div>
+                                            <br/>
+                                                <table border="1" width="100%" height="10" align="center" 
+                                                    style="margin-top: 100px;">
+                                                    <tr>
+                                                        <td align="left" width="35%" 
+                                                            style="text-align: center; 
+                                                            font-weight: bold; 
+                                                            font-size: 18px; ">
+                                                            <span>Amani Ahmed Musa</span>
+                                                                <!-- <br/> -->
+                                                            <p style="margin-top:-2px; font-size: 14px; font-weight: none; ">Registar</p >
+                                                        </td>
+                                                        
+                                                        <td align="right" width="30%" 
+                                                            style="text-align: center; 
+                                                            font-weight: bold; 
+                                                            font-size: 18px; ">
+                                                            <span>Prof./Yasir A.Mohamed</span>
+                                                                <!-- <br/> -->
+                                                            <p style="margin-top:-2px; font-size: 14px; font-weight: none;" >Academic Secretary</p>
+                                                        </td>
+                                                        <td align="center" width="35%"
+                                                            style="text-align: center; 
+                                                            font-weight: bold;
+                                                            font-size: 18px; ">
+                                                            <span>Dr.Waleed A.H.Aboshora</span>
+                                                                <!-- <br/> -->
+                                                            <p style="margin-top:-2px; font-size: 14px; font-weight: none; ">Dean</p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <br/>
+                                                    <!-- <br/> -->
+                                                <p style="text-align:center; 
+                                                    padding-top 40px;
+                                                    margin-right:10px;
+                                                    font-size:14px;">
+                                                    <b><i>(Any Ateration Invalidatea The Certication)</i></b>
+                                                </p>
+                                                <!-- <hr size="2" color="black" style="margin-top 10px;"/>
+                                            <p style="text-align:center; font-size:14px;">ww.mahdi.edu.sd/كوستي-ص-ب:209/تلفون 571822222_120793680/فاكس:+2490571822222</p> -->
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <report
+            string="Create Diploma English Detials"
+            id="action_diploma_english"
+            model="university.student"
+            report_type="qweb-pdf"
+            name="UMS.print_diploma_english"
+            file="UMS.print_diploma_english"
+            />
+        <record id="action_diploma_english" model="ir.actions.report">
+            <field name="name">شهادة دبلوم تفاصيل إنجليزي</field>
+            <field name="model">university.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">UMS.print_diploma_english</field>
+            <field name="report_file">UMS.print_diploma_english</field>
+            <field name="print_report_name">'Students-Certificate'</field>
+            <field name="binding_model_id" ref="UMS.model_university_student"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="UMS.paperformat_student_certificate"/>
+        </record>
+    </data>
+</odoo>

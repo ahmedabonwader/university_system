@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_semester_result_wizard" model="ir.ui.view">
+           <field name="name">result.wizard</field>
+           <field name="model">result.wizard</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <form string="Select Semester Result">
+                    <group>
+                        
+                        <group>
+                            <field name="result_id"/>
+                            <field name="semester_type"/>
+                            <field name="first_semester" invisible="1"/>
+                            <field name="second_semester" invisible="1"/>
+                            <field name="print_type" />
+                        </group>
+                        <!-- <group>
+                            <field name="semester_result" />
+                        </group> -->
+                    </group>
+                    <footer>
+                        <button string="Print" name="print_result" type="object" class="oe_highlight" data-hotkey="q"/>
+                        <button string="Cancel" class="btn btn-default" special="cancel" data-hotkey="z"/>
+                    </footer>
+               </form>
+           </field>
+        </record>
+
+
+        <record id="semsester_result_wizard_action" model="ir.actions.act_window">
+            <field name="name">Semester Result</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">result.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create First Semester Result
+                </p>
+            </field>
+        </record>
+
+        
+    
+    </data>
+</odoo>

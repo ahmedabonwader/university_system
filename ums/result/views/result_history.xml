@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ums_result_history_tree" model="ir.ui.view">
+        <field name="name">ums.result.history.tree</field>
+        <field name="model">ums.result.history</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="result_id"/>
+                <field name="name"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ums_result_history_form" model="ir.ui.view">
+        <field name="name">ums.result.history.form</field>
+        <field name="model">ums.result.history</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="result_id" string="Result"/>
+                        <h1>
+                            <field name="result_id" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <!-- <field name="result_id"/> -->
+                            <field name="name"/>
+                            <field name="collage_id"/>
+                            <field name="department_id" attrs="{'invisible':[('is_department','=',False)],'required':[('is_department','=',True)]}"/>
+                            <field name="specialist_id" attrs="{'invisible':[('is_specialist','=',False)],'required':[('is_specialist','=',True)]}"/>
+                            <field name="program_id"/>
+                        </group>
+                        <group>
+                            <field name="class_id"/>
+                            <field name="level_id"/>
+                            <field name="academic_year_id"/>
+                            <field name="date"/>
+                            <field name="is_department" force_save="1" invisible="1"/>
+                            <field name="is_specialist" force_save="1" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="first" string="First Semestar Reusalt">
+                            <field name="firest_semstar" />
+                            <field name="line_first_ids">
+                                <tree delete="0" create="false">
+                                    <!-- <field name="student"/> -->
+                                    <field name="subject_id"/>
+                                    <field name="hours"/>
+                                    <field name="degree"/>
+                                    <field name="degree_letter"/>
+                                    <field name="note"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="second" string="Second Semestar Reusalt">
+                            <field name="second_semstar" />
+                            <field name="line_second_ids">
+                                <tree delete="0" create="false">
+                                    <!-- <field name="student"/> -->
+                                    <field name="subject_id"/>
+                                    <field name="hours"/>
+                                    <field name="degree"/>
+                                    <field name="degree_letter"/>
+                                    <field name="note"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+    <!-- <record id="view_university_student_search" model="ir.ui.view">
+        <field name="name">university.student.search</field>
+        <field name="model">university.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="std_name"/>
+                <field name="date_of_birth"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="std_number"/>
+                <field name="std_phone"/>
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
+                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
+                <separator/>
+                <filter name="filter_archived" string="Archived" domain="[('active', '=', 'False')]"/>
+            </search>
+        </field>
+    </record> -->
+
+    <record id="action_ums_result_history" model="ir.actions.act_window">
+        <field name="name">Result History</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.result.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Result
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

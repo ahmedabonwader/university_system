@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <!-- =================== Arabic Template ============================ -->
+        <template id="footer_signature_template_arabic" name="footer signature template">
+                <table width="100%" align="center"
+                    style="margin-top: 0px;">
+                <tr>
+                    <td align="left" width="35%"
+                        style="text-align: center;
+                            font-weight: bold;
+                            font-size: 18pt; ">
+                        <span t-esc="data['college_register']"/>
+                        <br/>
+                        <p style="margin-top:-2px; font-size: 16pt; font-weight: bold; ">المسجل</p>
+                    </td>
+                    <td align="center" width="30%"
+                        style="text-align: center;
+                            font-weight: bold;
+                            font-size: 18pt; ">
+                        <span t-esc="data['college_dean']"/>
+                        <br/>
+                        <p style="margin-top:-2px; font-size: 16pt; font-weight: bold; ">العميد</p>
+                    </td>
+                    <td align="right" width="35%"
+                        style="text-align: center;
+                            font-weight: bold;
+                            font-size: 18pt; ">
+                        <span t-esc="data['ac_name']"/>
+                        <br/>
+                        <p style="margin-top:-2px; font-size: 16pt; font-weight: bold;">أمين الشؤون
+                            العلمية
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='3' width="100%"
+                        style="text-align: center;
+                        font-weight: bold;
+                        font-size: 14pt; margin-top:-10px;">
+                        <p style='font-family:Times New Roman;'>
+                            (أي كشط أو تعديل يلغي هذه الشهادة)
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </template>
+
+        <template id="division_template_id" name="division_template">
+            <table width="80%" align="right" style="margin-right:80px; margin-top:10px; font-weight: bold;">
+                <tr>
+                    <td>
+                        <div>
+                            <span style='font-size:13pt; font-family:Times New Roman;'>
+                                <b>المفتاح :</b>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <table align="center" width="60%" height="1" style="margin-right:170px; font-size:11pt; border:2px solid #000; font-weight: bold;">
+                <tr style="background-color:#eff3f4;">
+                    
+                    <t t-foreach="data['division']" t-as="division">
+                        <td style="text-align:center; border:1px solid #000; font-family: FreeSerif; ">
+                            <span t-esc="division['min']"/>
+                            -
+                            <span t-esc="division['max']"/>
+                        </td>
+                    </t>
+                    <td style="text-align:center; border:1px solid #000;">نجاح بعد
+                        الملحق
+                    </td>
+
+                </tr>
+                <tr>
+                   
+                    <t t-foreach="data['division']" t-as="division">
+                        <td style=" text-align:center; border:1px solid #000; font-family: FreeSerif;">
+                            <span t-esc="division['name']"/>
+                        </td>
+                    </t>
+                    <td style="font-size:11pt; text-align:center; border:1px solid #000;"> *C</td>
+                    
+                </tr>
+            </table>
+        </template>
+        <!-- =================== English Template ===================-->
+        <template id="footer_signature_template" name="footer signature template">
+            <table width="100%" align="center"
+                style="margin-left:-30px;">
+                <tr>
+                    <td align="right" width="35%"
+                        style="text-align: center;
+                        font-weight: bold;
+                        font-size: 15pt; ">
+                        <span t-esc="data['ac_name']"/>
+                        <br/>
+                        <p style="margin-top:-2px; font-size: 15pt; font-weight: bold;">Academic Secretary
+                        </p>
+                    </td>
+                    <td align="center" width="35%"
+                        style="text-align: center;
+                        font-weight: bold;
+                        font-size: 15pt; ">
+                        <span t-esc="data['college_dean']"/>
+                        <br/>
+                        <p style="margin-top:-2px; font-size: 15pt; font-weight: bold; ">Dean</p>
+                    </td>
+                    <td align="left" width="30%"
+                        style="text-align: center;
+                        font-weight: bold;
+                        font-size: 15pt; ">
+                        <span t-esc="data['college_register']"/>
+                        <br/>
+                        <p style="margin-top:-2px; font-size: 15pt; font-weight: bold; ">Registrar</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan='3' width="100%"
+                        style="text-align: center;
+                        font-weight: bold;
+                        font-size: 14px; ">
+                        <span style='  '>
+                        (Any Alteration Invalidates The Certificate)
+                    </span>
+                    </td>
+                </tr>
+            </table>
+        </template>
+
+        <template id="english_division_template_id" name="division_template">
+           <table width="70%" style=" margin-left: 80px; font-family:Times New Roman Cyr">
+                <tr>
+                    <td>
+                        <div>
+                            <span style='font-size:13pt; font-family:Times New Roman Cyr'>
+                                <b>Key:</b>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table align="center" width="70%" style="border:1px solid black; margin-left: 130px">
+                <tr style="background-color:#eff3f4;  padding:5px; font-weight:bold; font-size:11pt;">
+
+                    <t t-foreach="data['division']" t-as="division">
+                        <td style=" text-align:center; border:1px solid black; font-family:Times New Roman Cyr">
+                            <span t-esc="division['max']"/>
+                            -
+                            <span t-esc="division['min']"/>
+                        </td>
+                    </t>
+                    <td style="font-size:12px; text-align:center; border:1px solid black;">Pass After
+                        Supp
+                    </td>
+                </tr>
+                <tr>
+                    <t t-foreach="data['division']" t-as="division">
+                        <td style=" text-align:center; border:1px solid black; font-family:Times New Roman Cyr">
+                            <span t-esc="division['name']"/>
+                        </td>
+                    </t>
+                    <td style=" text-align:center; border:1px solid black; font-family:Times New Roman Cyr">C*</td>
+                </tr>
+            </table>
+        </template>
+    </data>
+</odoo>

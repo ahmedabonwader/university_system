@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="print_result">
+            <t t-call="web.basic_layout">
+                <link rel="stylesheet" href="/ums/static/src/css/certificate_style.css"/>
+                <style>
+                    *{
+                    margin:0;
+                    padding:0;
+                    box-size:border-box;
+                    font-family:my_times;
+                    font-size:10px;
+                    font-weight:bold;
+                    }
+                    .body44{
+
+                    min-height:100vh;
+                    font-size:10px;
+                    <!-- display:flex; -->
+                    justify-content:center;
+                    <!-- align-items:center; -->
+                    background-color:#oodfff;
+                    }
+                    div.body44{
+                    width:86vw;
+                    height:20vh;
+                    background-color:#fff5;
+
+                    }
+                    .container33{
+                    font-size:18px;
+                    <!-- border :1px solid black; -->
+                    width:100%;
+                    display:flex;
+                    justify-content: space-between;
+
+                    }
+
+                    .menu22{
+                    margin:5px; padding:0px 2px;
+                    text-align:center;
+                    width:100%;
+                    }
+                    .box-name{
+                    width:40%
+                    }
+                    .table-container{
+                    margin-top:10px;
+                    <!-- margin-left:60px; -->
+                    border:1px solid black;
+                    width:100%;
+                    text-align:right;
+                    border-radius:3rem;
+                    }
+                    .table-container, thead,tr,th{
+                    padding:1rem;
+                    border:1px solid black;
+                    }
+                    .table-container, tbody,tr,td{
+                    padding:0.5rem;
+                    border:1px solid black;
+                    }
+                    .header{
+                    font-size:11pt;
+                    padding:0px;
+                    }
+                    .body{
+                    font-size:10pt;
+                    padding:0px;
+                    text-align:center;
+                    }
+                </style>
+                <t t-foreach="docs_data" t-as="result_data">
+                    <div class="body44">
+                        <div class='container33'>
+                            <div class='menu'/>
+                            <div class='menu22'>
+                                <span>جامعة الامام المهدي</span>
+                                <br/>
+                                <span style="width:20px" t-esc="result_data['college']"/>
+                                <br/>
+                                <span class="box-name" style="width:20%;padding-left:50px" t-esc="result_data['name']"/>
+                                <br/>
+                                <span style="width:20px" t-esc="result_data['program']"/>
+                                <br/>
+                                <span style="width:20px" t-esc="result_data['semester_name']"/>
+                                <br/>
+                            </div>
+                            <div class='menu'/>
+                        </div>
+
+                        <!-- Table  -->
+                        <section class="">
+                            <table class='table-container'>
+                                <thead class="header">
+                                    <tr style='background-color:#e6e6fa;'>
+                                        <th t-foreach="result_data['header']" t-as="head">
+                                            <span t-esc="head"/>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="body">
+                                    <tr t-foreach="result_data['result_line']" t-as="line">
+                                        <td t-foreach="line" t-as="va">
+                                            <span t-esc="va"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                    <table width="100%" align="center"
+                           style="margin-left:-30px; margin-top:50px;">
+                        <tr>
+                            <td align="right" width="20%"
+                                style="text-align: center;
+                                font-weight: bold;
+                                font-size: 15pt; ">
+                                <!-- <span t-esc="data['ac_name']"/> -->
+                                <br/>
+                                <p style="margin-top:-2px; font-size: 15pt; font-weight: bold;">سكرتير الامتحانات
+                                </p>
+                            </td>
+                            <td align="center" width="20%"
+                                style="text-align: center;
+                                font-weight: bold;
+                                font-size: 15pt; ">
+                                <!-- <span t-esc="data['college_dean']"/> -->
+                                <br/>
+                                <p style="margin-top:-2px; font-size: 15pt; font-weight: bold; ">مسجل الكلية</p>
+                            </td>
+                            <td align="left" width="20%"
+                                style="text-align: center;
+                                font-weight: bold;
+                                font-size: 15pt; ">
+                                <!-- <span t-esc="data['college_register']"/> -->
+                                <br/>
+                                <p style="margin-top:-2px; font-size: 15pt; font-weight: bold; ">الامين الاكاديمي</p>
+                            </td>
+                            <td align="left" width="20%"
+                                style="text-align: center;
+                                font-weight: bold;
+                                font-size: 15pt; ">
+                                <!-- <span t-esc="data['college_register']"/> -->
+                                <br/>
+                                <p style="margin-top:-2px; font-size: 15pt; font-weight: bold; ">عميد الكلية</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- <div>
+                        <table width="20%" align="right" style="margin-left:100px;">
+                            <tr><td>
+                                <span style='font-size:14px; font-weight:bold;'>: المفتاح </span>
+                            </td></tr>
+                        </table><br/>
+                        <table align="center" width="70%" height="1" style="margin-left: 100px" >
+                            <tr style="background-color:#e6e6fa; padding:5px;">
+                            
+                                <td style="font-size:12px; text-align:center;  padding:3px;">85-100 </td>
+                                <td style="font-size:12px; text-align:center;">75-84 </td>
+                                <td style="font-size:12px; text-align:center;">59-74 </td>
+                                <td style="font-size:12px; text-align:center;">50-58</td>
+                                    <td style="font-size:14px; text-align:center;">نجاح بعد الملحق </td>
+                            </tr>
+                            <tr >
+                                <td style="font-size:12px; text-align:center; border:1px solid #666;  padding:3px;">A</td>
+                                <td style="font-size:12px; text-align:center; border:1px solid #666; ">B+</td>
+                                <td style="font-size:12px; text-align:center; border:1px solid #666;">B </td>
+                                <td style="font-size:12px; text-align:center; border:1px solid #666;">C </td>
+                                <td style="font-size:12px; text-align:center; border:1px solid #666;">C* </td>
+                            </tr>
+                        </table>
+                    </div> -->
+
+                </t>
+            </t>
+        </template>
+        <record id="action_print_semester_result" model="ir.actions.report">
+            <field name="name">Semester Result</field>
+            <field name="model">ums.result</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ums.print_result</field>
+            <field name="report_file">ums.print_result</field>
+            <field name="print_report_name">'Semester-Result'</field>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="ums.paperformat_semester_result"/>
+        </record>
+    </data>
+</odoo>

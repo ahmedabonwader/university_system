@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="print_bachelor_details_arabic_degree_college">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs_data" t-as="data">
+                    <t t-set="total_gredit_hours" t-value="0"/>
+                    <t t-set="total_hours_1" t-value="0"/>
+                    <t t-set="total_hours_2" t-value="0"/>
+                    <link rel="stylesheet" href="/ums/static/src/css/certificate_style.css"/>
+                    <!-- <div class="page"> -->
+                        <div class="main_div">
+                            <table class="address_content">
+                                <tr>
+                                    <td width="25%" style="text-align:center;"/>
+                                    <td id="address">
+                                        <span  t-esc="data['college']"/>
+                                        <br/>
+                                        <span >السودان - كوستي</span>
+                                        <br/>
+                                        <span> فاكس :0571822222 - تلفون : 0140793660 </span>
+                                    </td>
+                                    <td id="student_content">
+                                        <span id="student-number">الرقم الجامعي :</span>
+                                        <span id="student-number" style=' font-family: FreeSerif;' t-esc="data['student_number']"/>
+                                    </td>
+                                    
+                                </tr>
+                            </table>
+                            <table width="100%" height="100%" >
+                                <tr>
+                                    <td colspan="3" width="90%" height="90">
+                                        <div class="paragraph-title">
+                                            <span>
+                                                <span id="para-intro"/>
+                                                بهذا نشهد نحن الموقعون أدناه أن مجلس اﻷساتذة قد منح/
+                                                <span id="para" t-esc="data['name']"/>
+                                                (<span  id="para" t-esc="data['nationality_id']"/>)
+                                                <span id="para-spaci"> درجة
+                                                </span>
+                                                <span id="para" t-esc="data['program']" style="line-height:0.3em;"/> في
+                                                <span id="para" style=' font-size:16.5pt;' t-esc="data['grade_date']"/>
+                                                <!-- <span t-if="data['specialist']"  style="font-weight: bold; font-size:17.2pt;" t-esc="data['specialist']"/>
+                                                 بتاريخ
+                                                <span id="para" t-esc="data['grade_date']"/>
+                                                <t t-if = "data['degree_letter']">
+                                                    بتقدير
+                                                    <span id="para" t-esc="data['degree_letter']"/>
+                                                </t> -->
+                                                <span>و فيما يلي تفاصيل الدرجات التي تحصل / تحصلت عليها:</span>
+                                            </span>
+                                        </div>
+                                        <t t-set="counter" t-value="0"/>
+                                        <t t-foreach="data['results']" t-as="result">
+                                            <t t-if = "counter == 2 ">
+                                                <div  style="margin-top:20px;  font-weight:bold;">
+                                                    <t t-call="ums.division_template_id"/>
+                                                </div>
+                                                
+                                                <div style="page-break-before:always;"/>
+                                            </t>
+                                            <div class="container">
+                                                <table align="center" width="100%" style="">
+                                                    <tr>
+                                                        <td colspan="2" id="container-level">
+                                                            <t t-foreach="result['note']" t-as="note">
+                                                                <span t-esc="note['key']"/>
+                                                            </t>
+                                                            <span t-esc="result['level']"/>
+                                                            <!-- <br/> -->
+                                                            
+                                                            <t t-foreach="result['note']" t-as="note">
+                                                                <span style=' font-family: FreeSerif;' t-esc="note['note']"/> /
+                                                                <!-- <br/> -->
+                                                            </t>
+                                                            <t t-if="not result['first_semester_name'] or not result['second_semester_n']">
+                                                                <span style=' font-family: FreeSerif;' t-esc="result['academic_year']"/>
+                                                            </t>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <br/>
+                                                    <tr>
+                                                        <td id="container-semester" >
+                                                            <t t-foreach="result['first_semester_note']" t-as="note">
+                                                                <span t-esc="note['key']"/>
+                                                            </t>
+
+                                                            <span t-esc="result['first_semester_name']"/>
+
+                                                             <t t-if="result['first_semester_n']">
+                                                                <span style=' font-family: FreeSerif;' t-esc="result['first_semester_n']"/>
+                                                            </t>
+
+                                                            <t t-foreach="result['first_semester_note']" t-as="note">
+                                                                <span t-esc="note['note']"/>
+                                                                <br/>
+                                                            </t>
+                                                        </td>
+                                                        <td id="container-semester">
+                                                            <t t-foreach="result['second_semester_note']" t-as="note">
+                                                                <span t-esc="note['key']"/>
+                                                            </t>
+
+                                                            <span t-esc="result['second_semester_name']"/>
+
+                                                            <t t-if="result['second_semester_n']">
+                                                                <span style=' font-family: FreeSerif;' t-esc="result['second_semester_n']"/>
+                                                            </t>
+
+                                                            <t t-foreach="result['second_semester_note']" t-as="note">
+                                                                <span t-esc="note['note']"/>
+                                                                <br/>
+                                                            </t>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table align="left" cellpadding="10" width="49%" class='table_semester_one'
+                                                       t-foreach="result['second']" t-as="second">
+                                                    <t t-set="total_hours_2" t-value="0"/>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                المادة
+                                                            </th>
+                                                            <th id='head_degree'>
+                                                                التقدير
+                                                            </th>
+                                                            <th id='head_hour'>
+    
+                                                                الساعات المعتمدة
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr t-foreach="second.subject_line" t-as="subject_line">
+                                                            <td id="body_subject">
+                                                                <b><span t-field="subject_line.subject.name" style='white-space:nowrap;'/></b>
+                                                            </td>
+                                                            <td id='body_degree'>
+                                                                <b><span t-field="subject_line.degree_letter"/></b>
+                                                            </td>
+                                                            <td id="body_hour">
+                                                                <b><span t-field="subject_line.hours"/></b>
+                                                               <b><t t-set="total_hours_2"
+                                                                   t-value="total_hours_2 + subject_line.hours"/></b>
+                                                            </td>
+                                                        </tr>
+                                                        <tr t-foreach="result['second_row_count']" t-as="second_count">
+                                                            <td class="hach">
+                                                                /////////////////
+                                                            </td>
+                                                            <td id="body_degree">
+                                                                ////////
+                                                            </td>
+                                                            <td id="body_hour">
+                                                                ////////
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <footer >
+                                                        <td class="footer_result" style="border:1px solid #000;  background-color:#eff3f4; text-align:center; width:60%">
+                                                            <span > المعدل الفصلي </span>
+                                                        </td>
+                                                        <td style="border:1px solid #000; background-color:#eff3f4; text-align:center; width:20%">
+                                                            <span style='font-family: FreeSerif; font-size:11pt' t-field='second.level_degree' t-options="{'widget':'float','precision':2}"/>
+                                                        </td>
+                                                        <td style="border:1px solid #000; height:94%; font-family: FreeSerif; background-color:#eff3f4; position:relative; top:1px; font-weight:bold;  font-size:12pt; text-align:center; width:20%">
+                                                            <span t-esc="total_hours_2"/>
+                                                            <t t-set="total_gredit_hours" t-value="total_gredit_hours + total_hours_2"/>
+                                                        </td>
+                                                    </footer>
+                                                </table>
+
+                                                <!-- first table semester one -->
+                                                <table align="right" width="49%" class="table_semester_one"
+                                                       t-foreach="result['first']" t-as="first">
+                                                    <t t-set="total_hours_1" t-value="0"/>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                المادة
+                                                            </th>
+                                                            <th id='head_degree'>
+                                                                التقدير
+                                                            </th>
+                                                            <th id='head_hour'>
+    
+                                                                الساعات المعتمدة
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style='font-size:13pt;'>
+                                                        <tr t-foreach="first.subject_line" t-as="subject_line">
+                                                            
+                                                            <td id="body_subject">
+                                                                <b><span t-field="subject_line.subject.name" style='white-space:nowrap;'/></b>
+                                                            </td>
+                                                            <td id='body_degree'>
+                                                                <b><span t-field="subject_line.degree_letter"/></b>
+                                                            </td>
+                                                            <td id="body_hour">
+                                                                <b><span t-field="subject_line.hours"/></b>
+                                                               <b><t t-set="total_hours_1"
+                                                                   t-value="total_hours_1 + subject_line.hours"/></b>
+                                                            </td>
+                                                        </tr>
+                                                        <tr t-foreach="result['first_row_count']" t-as="first_count">
+                                                            <td class="hach">
+                                                                /////////////////
+                                                            </td>
+                                                            <td id="body_degree">
+                                                                ////////
+                                                            </td>
+                                                            <td id="body_hour">
+                                                                ////////
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <footer>
+                                                        <td class="footer_result" style="border:1px solid #000;  background-color:#eff3f4; text-align:center; width:60%">
+                                                            <span > المعدل الفصلي </span>
+                                                        </td>
+                                                        <td style="border:1px solid #000; background-color:#eff3f4; text-align:center; width:20%">
+                                                            <span style=' font-family: FreeSerif; font-size:11pt' t-field='second.level_degree' t-options="{'widget':'float','precision':2}"/>
+                                                        </td>
+                                                        <td style="border:1px solid #000; text-align:center; width:20%; font-family: FreeSerif; background-color:#eff3f4; font-weight:bold; font-size:12pt;">
+                                                            <span t-esc="total_hours_1"/>
+                                                            <t t-set="total_gredit_hours" t-value="total_gredit_hours + total_hours_1"/>
+                                                        </td> 
+                                                    </footer>
+                                                </table>
+                                            </div>
+                                            <t t-set="counter" t-value="counter + 1"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- <br/>
+                            <br/> -->
+<!--                            <br/>-->
+                            <table style='text-align:center; 
+                                width:100%; 
+                                font-family:"Times New Roman"; 
+                                margin-rignt:60px;
+                                position:relative;
+                                top:25px;
+                                margin-left:10px; font-size:18px; font-weight:bold;'>
+                                <tr>
+                                    <td style=" text-align:center; ">
+                                        <span style="border:4px double #000; padding:5px 20px; background-color:#eff3f4;">
+                                            <span> معدل التخرج :</span> 
+                                            #<span style=' font-family: FreeSerif;' t-esc="data['final_result']" t-options="{'widget':'float','precision':2}"/>#
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <!-- <br/> -->
+                            <table style='text-align:center; 
+                                margin-top:10px; width:100%; 
+                                font-family:"Times New Roman"; 
+                                margin-rignt:60px; 
+                                margin-left:10px;
+                                font-size:18px;
+                                font-weight:bold;
+                                position:relative;
+                                top:15px;
+                                '>
+                                <tr>
+                                    <td style=" text-align:center; ">
+                                        <span style="border:4px double #000; padding:5px 40px;  background-color:#eff3f4;">
+                                            مجموع الساعات المعتمدة : #<span style=' font-family: FreeSerif;' t-esc="total_gredit_hours"/>#
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="">
+                                <t t-call="ums.division_template_id"/><br/>
+                            </div>
+                            <div width="60%"
+                                 style='text-align:right; font-size:13pt; font-family:"Times New Roman"; height:55px; font-weight: bold;'>
+                                <t t-foreach="data['notes_details']" t-as="notes_details">
+                                    <span>
+                                        
+                                        <u>
+                                            <t t-esc="notes_details['key']"/>
+                                            <t t-esc="notes_details['value']"/>
+                                        </u>
+
+                                    </span>
+                                    <br/>
+                                </t>
+                            </div>
+                            <div style='text-align:left; font-size:13pt; font-weight: bold; font-family:"Times New Roman";'>
+                                <span>
+                                    <u>تاريخ الإصدار :
+                                        <t style=' font-family: FreeSerif;' t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y/%m/%d')" />
+                                    </u>
+                                </span>
+                            </div>
+                            <br/>
+                        </div>
+                    <t t-if = "counter &lt;= 2 ">
+                        <div width="100%" align="center"
+                            style='height:65px; font-family:"Times New Roman"; width:95%; border:0px solid #fff; position:absolute; top:295mm;'>
+                            <t t-call="ums.footer_signature_template_arabic"/>
+                        </div>
+                    </t>
+                    <t t-if = "counter &gt; 2 ">
+                        <div width="100%" align="center"
+                            style='height:65px; font-family:"Times New Roman"; width:95%; border:0px solid #fff; position:absolute; top:630mm;'>
+                            <t t-call="ums.footer_signature_template_arabic"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <record id="action_bachelor_arabic_degree_college" model="ir.actions.report">
+            <field name="name"> شهادة بكلاريوس  تقديرية تفاصيل عربي </field>
+            <field name="model">ums.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ums.print_bachelor_details_arabic_degree_college</field>
+            <field name="report_file">ums.print_bachelor_details_arabic_degree_college</field>
+            <field name="print_report_name">'شهادة تفاصبل كلية طب عربي'</field>
+            <field name="binding_model_id" ref="ums.model_ums_student"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="ums.paperformat_bachelor_certificate"/>
+        </record>
+    </data>
+</odoo>

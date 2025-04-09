@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="request_certificate_form" model="ir.ui.view">
+            <field name="name">request certificate form</field>
+            <field name="model">ums.request.certificate</field>
+            <field name="arch" type="xml">
+                <form string="Requests certificates">
+                    <header>
+                        <button string="Print" name="print_action" type="object" class="oe_highlight"
+                                states="draft,in_progress"/>
+                        <button string="Reprint" name="print_action" type="object" states="completed"/>
+                        <button string="Completed" name="set_complete" type="object" class="oe_highlight"
+                                states="in_progress"/>
+                        <field name="state" widget="statusbar" nolabel="1"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Done" attrs="{'invisible': [('state', '!=', 'completed')]}"
+                                bg_color="bg-success"/>
+                        <div class="oe_titel">
+                            <h4>
+                                <field name="ref" readonly="1"/>
+                            </h4>
+                        </div>
+                        <div class="oe_titel">
+                            <h3>
+                                <field name="english_name" readonly="1" force_save="1" invisible="1"/>
+                            </h3>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:10px;">
+                                            <field name="first_english_name" placeholder="First English Name"/>
+                                        </td>
+                                        <td style="padding-right:10px;">
+                                            <field name="middle_english_name" placeholder="Middle English Name"/>
+                                        </td>
+                                        <td style="padding-right:10px;">
+                                            <field name="sur_english_name" placeholder="English Surname"/>
+                                        </td>
+                                        <td style="padding-right:10px;">
+                                            <field name="last_english_name" placeholder="Last English Name"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="student"/>
+                            <field name="college_id" force_save="1"/>
+                            <field name="specialist_id" force_save="1"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="phone"/>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="phone_2"/>
+                                </group>
+                                <group>
+                                    <field name="resend" invisible="1"/>
+                                    <button name="resend_sms" string="Send" type="object" class="oe_stat_button"
+                                            icon="fa-envelope" attrs="{'invisible': [('resend', '!=', False)]}"/>
+                                </group>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="language" widget="radio" options="{'horizontal':true}"/>
+                            <field name="details" widget="boolean_toggle"/>
+                            <field name="request_date"/>
+                            <field name="done_date"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="request_certificate_tree" model="ir.ui.view">
+            <field name="name">requests certificates list</field>
+            <field name="model">ums.request.certificate</field>
+            <field name="arch" type="xml">
+                <tree string="Requests Certificates" decoration-muted="state=='draft'"
+                      decoration-warning="state=='in_progress'"
+                      decoration-success="state=='completed'">
+                    <field name="ref" readonly="1"/>
+                    <field name="student"/>
+                    <field name="college_id"/>
+                    <field name="language"/>
+                    <field name="details" readonly="1"/>
+                    <field name="request_date"/>
+                    <field name="done_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_ums_request_certificate_search" model="ir.ui.view">
+            <field name="name">ums.request.certificate.search</field>
+            <field name="model">ums.request.certificate</field>
+            <field name="arch" type="xml">
+                <search string="Request Certificate">
+                    <field name="ref"/>
+                    <field name="student"/>
+                    <field name="phone"/>
+                    <field name="college_id"/>
+                    <field name="request_date" string="Request Date"/>
+                    <field name="done_date" string="Done Date"/>
+                    <separator/>
+                    <filter name="not_complete" string="Not Complete" domain="['|',('state','=','draft'),('state','=','in_progress')]"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]"/>
+                    <filter name="in_progress" string="In Progress" domain="[('state','=','in_progress')]"/>
+                    <filter name="completed" string="Completed" domain="[('state','=','completed')]"/>
+                    <filter name="request_date" string="Request Date" date="request_date"/>
+                    <filter name="done_date" string="Complete Date" date="done_date"/>
+                    <filter name="details" string="Details" domain="[('details','=',True)]"/>
+                    <filter name="not_details" string="Not details" domain="[('details','=',False)]"/>
+                    <filter name="arabic" string="Arabic" domain="[('language','=','arabic')]"/>
+                    <filter name="english" string="English" domain="[('language','=','english')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_college" string="Collage" context="{'group_by': 'college_id'}"/>
+                        <filter name="group_by_date" string="Request Date" context="{'group_by':'request_date'}"/>
+                        <filter name="group_by_complete_date" string="Complete Date" context="{'group_by':'done_date'}"/>
+                    </group>
+                    <searchpanel>
+                        <field name="state" icon="fa-users" string="State" enable_counters="1"/>
+                        <field name="college_id" icon="fa-users" string="Collage" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+        <record id="request_certificate_action" model="ir.actions.act_window">
+            <field name="name">Requests Certificates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ums.request.certificate</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="context">{"search_default_not_complete":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Request Certificate
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <template id="print_bachelor_english_degree">
+           <t t-call="web.basic_layout" >
+                <t t-foreach="docs_data" t-as="data">
+                    <div class="page">
+                    
+                        <link rel="stylesheet" href="/ums/static/src/css/certificate_style.css"/>
+                        <!-- <div class="oe_structure"/> -->
+                        <t t-foreach="data['student']" t-as="student">
+                             <div style=" 
+                                font-family: times_cyr;
+                                margin-top:9px; 
+                                font-weight:bold;
+                                font-size:17pt; width:100% ;direction:ltr;">
+                                <table width="100%">
+                                    <tr>
+                                        <td style="text-align:left; width: 25%; position:relative; top:70px; left:20px; font-size:14pt;">
+                                            <span style="">Student No  : </span>
+                                            <span style="" t-field="student.student_number"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style='height:150px;'></div>
+                                <div style="text-align:left; height:90px; position:relative; top:100px; left:20px; border:0px solid black">
+                                    <span style="padding-left:130px" t-field="student.english_name"/> (<span t-field="student.nationality_id.english_name"/>)
+                                </div>
+                                <div style="text-align:left; height:73px; position:relative; top:100px;left:190px;font-size:14pt; border:0px solid black">
+                                    <div style="border:0px solid black; width:60%"> <span t-field="student.program.english_name"/></div>
+                                    <span style='border:0px solid black; text-align:right; width:30%; position:relative; top:-26px; right:-450px' t-field="student.final_result_letter.english_name"></span>
+                                   <div style='border:0px solid black;font-size:16pt; position:absolute; top:33px; left:110px; width:400px'>
+                                    	<t t-if = "student.specialist_id"  >
+                                            <span id="para" t-esc="student.specialist_id.english_name"/>
+                                        </t>
+                                   </div>
+                                </div>
+                                <div style="text-align:left; height:63px; position:relative; top:100px; left :40px">
+                                    <span style="padding-left:170px"/> <span t-field="student.college_id.english_name"/>
+                                </div>
+                                <br/>
+                                
+                                <div style="border:0px solid black ; position:relative; top:90px; width:100%;height:5em;padding-top:10px;">
+                                    <span style='border:0px solid black; text-align:left; padding-left:190px' t-field="student.grade_date"></span>
+                                </div>
+                                <div style="border:0px solid black; position:relative; top:50px; width:100%;height:63px;padding-top:10px;">
+                                    <span style='border:0px solid black; text-align:left; padding-left:190px'><t t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/> </span>
+                                </div>
+                                <div width="100%" align="center" style="position:relative; top:250px; right:30px; font-family: Times New Roman Cyr; height:70px; ">
+                                    <table border="0" width="100%" height="10" align="center" 
+                                        style="margin-top: 0px;">
+                                        <tr>
+                                            <td align="right" width="30%" 
+                                                style="text-align: center; 
+                                                font-weight: bold; 
+                                                font-size: 15.5pt; ">
+                                                <span t-field="student.college_id.registrar_english_name" />
+                                                <br/>
+                                            </td>
+                                            <td align="center" width="40%"
+                                                style="text-align: center; 
+                                                font-weight: bold;
+                                                font-size: 15.5pt; ">
+                                                <span t-field="student.college_id.dean_english_name"/>
+                                                <br/>
+                                            </td>
+                                            <td align="left" width="30%" 
+                                                style="text-align: center; 
+                                                font-weight: bold; 
+                                                font-size: 15.5pt; ">
+                                                <span t-esc="data['ac_name']"/>
+                                                <br/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+        
+        <record id="action_bachelor_english_degree" model="ir.actions.report">
+            <field name="name">شهادة بكلاريوس إنجليزية تقديرية</field>
+            <field name="model">ums.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ums.print_bachelor_english_degree</field>
+            <field name="report_file">ums.print_bachelor_english_degree</field>
+            <field name="print_report_name">'Students-Certificate'</field>
+            <field name="binding_model_id" ref="ums.model_ums_student"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

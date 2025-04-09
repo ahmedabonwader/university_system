@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_ums_faculty_tree" model="ir.ui.view">
+            <field name="name">ums.faculty.tree</field>
+            <field name="model">ums.faculty</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="last_name"/>
+                    <field name="gender"/>
+                    <field name="blood_group"/>
+                    <field name="age"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ums_faculty_form" model="ir.ui.view">
+            <field name="name">ums.faculty.form</field>
+            <field name="model">ums.faculty</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_right oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td style="padding-right:10px;"><field name="name" required="1" placeholder="First Name"/></td>
+                                        <!-- <td style="padding-right:10px;"><field name="last_name" required="1" placeholder="Last Name"/></td> -->
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page string="Faculty Details">
+                                <group>
+                                    <group>
+                                        <field name="degree"/>
+                                        <field name="gender"/>
+                                        <field name="blood_group"/>
+
+                                    </group>
+                                    <group>
+                                        <field name="date_of_birth"/>
+                                        <field name="age"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Contact Details">
+                                <group>
+                                    <group>
+                                        <field name="email"/>
+                                    </group>
+                                    <group>
+                                        <field name="phone"/>
+                                        <field name="mobile"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Subjects">
+                                <field name="subject_lines_id"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_follower"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+        <!-- <record id="view_university_student_search" model="ir.ui.view">
+            <field name="name">university.student.search</field>
+            <field name="model">university.student</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="std_name"/>
+                    <field name="date_of_birth"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                    <field name="std_number"/>
+                    <field name="std_phone"/>
+                    <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
+                    <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
+                    <separator/>
+                    <filter name="filter_archived" string="Archived" domain="[('active', '=', 'False')]"/>
+                </search>
+            </field>
+        </record> -->
+
+        <record id="action_ums_faculty" model="ir.actions.act_window">
+            <field name="name">Faculty</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ums.faculty</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first Faculity
+                </p>
+            </field>
+        </record>
+        
+  </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="seq_ums_student" model="ir.sequence">
+        <field name="name">University Student</field>
+        <field name="code">ums.student</field>
+        <field name="prefix">SA</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_ums_transferred" model="ir.sequence">
+        <field name="name">University Transferred</field>
+        <field name="code">ums.transferred</field>
+        <field name="prefix">UT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_ums_request_certificate" model="ir.sequence">
+        <field name="name">Request Certificate</field>
+        <field name="code">ums.request.certificate</field>
+        <field name="prefix">RC</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_program_level_id" model="ir.sequence">
+            <field name="name">Program Level</field>
+            <field name="code">ums.program.level.line</field>
+            <field name="prefix"></field>
+            <field name="padding">1</field>
+    </record>
+    <record id="seq_program_semester_id" model="ir.sequence">
+        <field name="name">Program Level</field>
+        <field name="code">program.level.semester.line</field>
+        <field name="prefix"></field>
+        <field name="padding">1</field>
+    </record>
+</odoo>

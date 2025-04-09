@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+    <record id="view_ums_exam_type_tree" model="ir.ui.view">
+        <field name="name">ums.exam.type.tree</field>
+        <field name="model">ums.exam.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="exam_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ums_exam_type_form" model="ir.ui.view">
+        <field name="name">ums.exam.type.form</field>
+        <field name="model">ums.exam.type</field>
+        <field name="arch" type="xml">
+            <form>
+               <sheet>
+                    <h1>
+                        <field name="name" placeholder="Eg: Annual Exam"/>
+                    </h1>
+                    <group>
+                        <field name="exam_type" widget="radio"/>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_ums_exam_type" model="ir.actions.act_window">
+        <field name="name">Exam Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.exam.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Exam Type
+            </p>
+        </field>
+    </record>
+
+    <record id="view_ums_exam_tree" model="ir.ui.view">
+        <field name="name">ums.exam.tree</field>
+        <field name="model">ums.exam</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="exam_type"/>
+                <field name="type" invisible="1"/>
+                <field name="college_id"/>
+                <field name="specialist_id"/>
+                <field name="class_id"/>
+                <field name="semester_id"/>
+                <field name="academic_year"/>
+                <field name="state" 
+                    decoration-success="state == 'close'"
+                    decoration-danger="state == 'cancel'"
+                    decoration-warning="state == 'ongoing'"
+                    decoration-info="state == 'draft'"/>
+                    
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ums_exam_form" model="ir.ui.view">
+        <field name="name">ums.exam.form</field>
+        <field name="model">ums.exam</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="confirm_exam" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}" class="oe_highlight" string="Confirm"/>
+                    <button name="action_back" type="object" attrs="{'invisible': [('state', '!=', 'ongoing')]}" class="oe_highlight" string="Back"/>
+                    <button name="close_exam" type="object" attrs="{'invisible': [('state', '!=', 'ongoing')]}" string="Close" confirm="After closing the exam, you can't do valuation. You can close the exam only after the completion of valuation process. Do you want to proceed?"/>
+                    <button name="cancel_exam" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}" string="Cancel"/>
+                    <field name="state" readonly="1" widget="statusbar" statusbar_visible="draft,ongoing,close"/>
+                </header>
+               <sheet>
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="type_name"/>
+                            <field name="exam_type"/>
+                            <field name="college_id"/>
+                            <field name="department_id" attrs="{'invisible':[('is_department','=',False)],'required':[('is_department','=',True)]}"/>
+<!--                            <field name="department_id" attrs="{-->
+<!--                            'readonly':[('exam_type','=','final')]}"/>-->
+                            <field name="specialist_id" attrs="{'invisible':[('is_specialist','=',False)],'required':[('is_specialist','=',True)]}"/>
+                            <field name="class_id"/>
+                            <field name="is_department" invisible="1" force_save="1"/>
+                            <field name="is_specialist" invisible="1" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="academic_year" attrs="{
+                            'readonly':[('exam_type','=','final')]}"/>
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="level_id" force_save="1" attrs="{
+                            'readonly':[('exam_type','=','final')]}"/>
+                            <field name="semester_id" force_save="1" attrs="{
+                            'readonly':[('exam_type','=','final')]}"/>
+                            <field name="program_id" attrs="{
+                            'readonly':[('exam_type','=','final')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <!-- <page string="Evaluation">
+                            <field name="evaluation_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree delete ="1" create="True">
+                                    <field name="name"/>
+                                    <field name="exam_id"/>
+                                    <field name="class_id" />
+                                    <field name="college_id"/>
+                                    <field name="state" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page> -->
+                        <page string="Subjects">
+                            <field name="subject_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree editable="bottom" delete ="1" create="false">
+                                    <field name="subject_id"/>
+                                    <field name="date"/>
+                                    <field name="time_from" widget="float_time"/>
+                                    <field name="time_to" widget="float_time"/>
+                                    <field name="mark" invisible="1"/>
+                                    <field name="exam_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+    <record id="view_ums_exam_search" model="ir.ui.view">
+        <field name="name">ums.exam.search</field>
+        <field name="model">ums.exam</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="type"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_collage" string="Collage" context="{'group_by': 'college_id'}"/>
+                    <filter name="group_by_department" string="Department" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_by_class" string="Class" context="{'group_by': 'class_id'}"/>
+                </group>
+                 <searchpanel>
+                    <field name="college_id" icon="fa-users" string="College" enable_counters="1"/>
+                    <field name="department_id" icon="fa-users" string="Department" enable_counters="1"/>
+                    <field name="state" icon="fa-users" string="State" enable_counters="1"/>
+                    <field name="semester_id" icon="fa-users" string="Semester" enable_counters="1"/>
+                    <field name="exam_type" icon="fa-users" string="Exam Type" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ums_exam" model="ir.actions.act_window">
+        <field name="name">Exam</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.exam</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Exam
+            </p>
+        </field>
+    </record>
+
+    
+
+
+    
+</odoo>
+

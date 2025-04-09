@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <template id="print_bachelor_arabic">
+             <t t-call="web.basic_layout" >
+                <t t-foreach="docs_data" t-as="data">
+                <link rel="stylesheet" href="/ums/static/src/css/certificate_style.css"/>
+                    <div class="page">
+                        <!-- <div class="oe_structure"/> -->
+                        <t t-foreach="data['student']" t-as="student">
+                             <div style=" 
+                                font-family: my_times;
+                                margin-top:9px; 
+                                font-weight:bold;
+                                font-size:17pt; 
+                                width:100%;
+                                direction:rtl;">
+                                <table width="100%" >
+                                    <tr>
+                                        <td style="text-align:left; width:25%; font-size:16pt;">
+                                            <span style="position:relative; left:30px; top:145px;">الرقم الجامعي : </span>
+                                            <span style="position:relative; left:30px; top:145px; font-family: Times New Roman Cyr;" t-field="student.student_number"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div style='height:190px; border:0px solid black;'></div>
+                                <div style="font-family: Times New Roman; text-align:right; position:relative; top:120px; font-size:20pt; height:3.5em; padding-right:10em">
+                                   <span t-field="student.name"/> (<span t-field="student.nationality_id"/>)
+                                </div>
+                                <div style="font-family: Times New Roman; font-size:20pt; position:relative; top:120px; width:100%;height:4em;">
+                                    <span style="padding-right:8em;"/> <span style="padding-left:2em" t-field="student.program.degree_name"/> 
+                                    <!-- <span style='border:0px solid black; text-align:left; width:50%; padding-right:6em' t-field="student.final_result_letter"></span> -->
+                                </div>
+                                <!-- <div style="text-align:right; height:4.4em; border:0px solid black;">
+                                    <span style="padding-right:10em"/> درجة <span t-field="student.program.name"/>
+                                </div> -->
+                <!-- ==========================college ==================================== -->
+                                <div style="font-family: Times New Roman; text-align:right; font-size:21pt; position:relative; top:100px; height:3.1em;">
+                                    <span style="padding-right:8em"/> <span t-field="student.college_id"/>
+                                </div>
+                                <br/>
+                <!-- ======================== Date hijri ==================================== -->
+                                <div style="position:relative; top:80px; width:100%;height:4em; ">
+                                    <span style='text-align:right; width:50%; padding-right:10em; font-family: Times New Roman Cyr;' t-esc="student.grade_date.strftime('%Y/%m/%d')"></span>
+                                    <span style='text-align:left; width:50%; position:relative; right:12.7em; font-family:"KacstOne"' t-field="student.hijri_grade_date"> </span>
+                                </div>
+                <!-- ====================================== datetime now ===================== -->
+                                <div style="width:100%;height:2em; position:relative; top:65px; padding-top:10px; font-family: Times New Roman Cyr;">
+                                    <span style='text-align:right; padding-right:10em'><t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y/%m/%d')"/> </span>
+                                </div>
+                <!-- ================================= footer ================================ -->
+                                <div width="100%" align="center" style="position:relative; top:11em; right:0px; font-family:Times New Roman; height:3em;">
+                                    <table width="100%" height="10" align="center">
+                                        <tr>
+                                            <td align="left" width="30%" 
+                                                style="text-align: center; 
+                                                font-weight: bold; 
+                                                font-size:22pt; padding-right:-10px">
+                                                <span t-field="student.college_id.registrar_name" />
+                                                <br/>
+                                            </td>
+                                            <td align="center" width="40%"
+                                                style="text-align: center; 
+                                                font-weight: bold;
+                                                font-size:22pt; ">
+                                                <span t-field="student.college_id.dean_name"/>
+                                                <br/>
+                                            </td>
+                                            <td align="right" width="30%" 
+                                                style="text-align: center; 
+                                                font-weight: bold; 
+                                                font-size:22pt">
+                                                <span t-esc="data['ac_name']"/>
+                                                <br/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <record id="action_bachelor_arabic" model="ir.actions.report">
+            <field name="name">شهادة بكلاريوس عربي طب</field>
+            <field name="model">ums.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">ums.print_bachelor_arabic</field>
+            <field name="report_file">ums.print_bachelor_arabic</field>
+            <field name="print_report_name">'Students-Certificate'</field>
+<!--            <field name="binding_model_id" ref="UMS.model_university_student"/>-->
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="ums.paperformat_bachelor_certificate"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,2 @@
+from . import bachelor_detials_arabic_degree_college
+#from . import bachelor_detials_english_degree_college

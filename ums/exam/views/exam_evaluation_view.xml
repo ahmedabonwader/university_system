@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ums_exam_eevaluation_tree" model="ir.ui.view">
+        <field name="name">ums.exam.evaluation.tree</field>
+        <field name="model">ums.exam.evaluation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="subject_id"/>
+                <field name="date"/>
+                <field name="exam_id"/>
+                <field name="college_id"/>
+                <field name="specialist_id"/>
+                <field name="class_id"/>
+                <field name="academic_year"/>
+                <field name="state"
+                       decoration-success="state == 'completed'"
+                       decoration-info="state == 'draft'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ums_exam_evaluation_form" model="ir.ui.view">
+        <field name="name">ums.exam.evaluation.form</field>
+        <field name="model">ums.exam.evaluation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button confirm="Are you sure to perform this operation?" name="evaluation_completed" type="object"
+                            attrs="{'invisible': ['|','|',('mark_sheet_created', '=', False),('state', '!=', 'draft'),('result_test','!=',False),('reason_test','!=',False)]}"
+                            class="oe_highlight" string="Completed" states="alternative"/>
+                    <button name="evaluation_done" type="object"
+                            attrs="{'invisible': ['|','|','|',('mark_sheet_created', '=', False),('state', '!=', 'draft'),('result_test','=',False),('reason_test','!=',True)]}"
+                            class="oe_highlight" string="Alternative Done"/>
+                    <button name="evaluation_canceled" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"
+                            string="Cancel"/>
+                    <button name="set_to_draft" type="object" attrs="{'invisible': [('state', '!=', 'completed')]}"
+                            string="Set to Draft"/>
+                    <field name="state" readonly="1" widget="statusbar"
+                           statusbar_visible="draft,alternative,completed"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="exam_id"
+                                   attrs="{'readonly': ['|', ('mark_sheet_created', '=', True), ('state', '!=', 'draft')]}"/>
+                            <field name="exam_type"/>
+                            <field name="subject_id" widget="selection"
+                                   attrs="{'readonly': ['|', ('mark_sheet_created', '=', True), ('state', '!=', 'draft')]}"/>
+                            <field name="teachers_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="program_id"/>
+                            <field name="semester_id"/>
+                            <field name="is_portable" invisible="1" force_save="1"/>
+                            <field name="result_test" force_save="1" invisible="1"/>
+                            <field name="reason_test" force_save="1" invisible="1"/>
+                            <field name="is_department" force_save="1" invisible="1"/>
+                            <field name="is_specialist" force_save="1" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="mark" attrs="{'readonly': [('state', '!=', 'draft')],'required':[('state', '!=', 'draft')]}"/>
+                            <field name="pass_mark" attrs="{'readonly': [('state', '!=', 'draft')],'required':[('state', '!=', 'draft')]}"/>
+                            <field name="assignment" attrs="{'readonly': [('state', '!=', 'draft')],'required':[('state', '!=', 'draft')],'invisible':[('exam_type','=','supplement_exam')]}"/>
+                            <field name="pass_assignment" attrs="{'readonly': [('state', '!=', 'draft')],'required':[('state', '!=', 'draft')],'invisible':[('exam_type','=','supplement_exam')]}"/>
+                            <!-- <field name="division_id" attrs="{'readonly': ['|', ('mark_sheet_created', '=', True), ('state', '!=', 'draft')]}"/> -->
+                            <field name="college_id"/>
+                            <field name="specialist_id" attrs="{'invisible':[('is_specialist','=',False)],'required':[('is_specialist','=',True)]}"/>
+                            <field name="class_id"
+                                   attrs="{'readonly': ['|', ('mark_sheet_created', '=', True), ('state', '!=', 'draft')]}"/>
+                            <field name="level_id" invisible="0"/>
+                            <field name="department_id" attrs="{'invisible':[('is_department','=',False)],'required':[('is_department','=',True)]}"/>
+                            <field name="academic_year" invisible="0"/>
+                            <field name="mark_sheet_created" invisible="1"/>
+                        </group>
+                    </group>
+                    <div style="padding-bottom: 10px;">
+                        <button style="padding: 1px 5px;"
+                                attrs="{'invisible': ['|', ('mark_sheet_created', '=', True), ('state', '=', 'cancel')]}"
+                                string="Create Mark Sheet" name="create_mark_sheet" type="object"
+                                class="oe_highlight"/>
+                    </div>
+                    <div style="padding-bottom: 10px;">
+                        <button style="padding: 1px 5px;"
+                                attrs="{'invisible': ['|','|', ('mark_sheet_created', '=', False), ('state', '=', 'cancel'), ('is_portable', '=', False)]}"
+                                string="Create Portable Student" name="create_portable_student" type="object"
+                                class="oe_highlight"/>
+                    </div>
+                    <div style="padding-bottom: 10px;">
+                        <button style="padding: 1px 5px;"
+                                attrs="{'invisible': ['|',('mark_sheet_created', '=', False), ('state', '=', 'cancel')]}"
+                                string="Create Transferred Student" name="create_transferred_student" type="object"
+                                class="oe_highlight"/>
+                    </div>
+                    <notebook attrs="{'invisible': [('mark_sheet_created', '=', False)]}">
+                        <page string="Mark Sheet">
+                            <field name="evaluation_line" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree create="0" editable="bottom" decoration-danger="pass_or_fail==False"
+                                      decoration-success="pass_or_fail==True">
+                                    <field name="student_id" invisible="1"/>
+                                    <field name="student_name" readonly="1"/>
+                                    <field name="mark_scored"/>
+                                    <field name="exam_type" invisible="1"/>
+                                    <field name="assignment_mark" attrs="{'invisible':[('exam_type','=','supplement_exam')]}"/>
+                                    <field name="last_mark" force_save="1"/>
+                                    <field name="pass_or_fail" widget="boolean_toggle" force_save="1"/>
+                                    <field name="degree_letter" force_save="1"/>
+                                    <field name="note"/>
+                                    <field name="student_status"/>
+                                    <field name="class_id"/>
+                                    <field name="absent" widget="boolean_toggle"/>
+                                    <field name="reason" widget="boolean_toggle"/>
+                                    <field name="sub_id" invisible="0"/>
+                                    <field name="evaluation_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ums_exam_evaluation_search" model="ir.ui.view">
+        <field name="name">ums.exam.evaluation.search</field>
+        <field name="model">ums.exam.evaluation</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="exam_type"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_collage" string="Collage" context="{'group_by': 'college_id'}"/>
+                    <filter name="group_by_department" string="Department" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_by_class" string="Class" context="{'group_by': 'class_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="college_id" icon="fa-users" string="College" enable_counters="1"/>
+                    <field name="department_id" icon="fa-users" string="Department" enable_counters="1"/>
+                    <field name="state" icon="fa-users" string="State" enable_counters="1"/>
+                    <field name="exam_type" icon="fa-users" string="Exam Type" enable_counters="1"/>
+                    <field name="subject_id" icon="fa-users" string="Subject" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ums_exam_evaluation" model="ir.actions.act_window">
+        <field name="name">Exam evaluation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.exam.evaluation</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Your First Exam Evaluation
+            </p>
+        </field>
+    </record>
+
+</odoo>
+<!-- attrs="{'invisible': ['|', ('mark_sheet_created', '=', True), ('state', '=', 'cancel')]}" -->

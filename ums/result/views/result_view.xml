@@ -1,0 +1,269 @@
+<odoo>
+    <data>
+        <record id="result_form" model="ir.ui.view">
+            <field name="name">Result form</field>
+            <field name="model">ums.result</field>
+            <field name="arch" type="xml">
+                <form string="Results">
+                    <header>
+                        <button name="first_confirm" string="Confirm First Semester Result" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': ['|',('state', '!=', 'draft'),('approve_state', '!=', 'academic_office')]}"/>
+                        <button name="action_back" string="Back" type="object"
+                                class="oe_highlight"
+                                />
+<!--                        <button name="first_draft" string="Reset to draft" type="object"-->
+<!--                                attrs="{'invisible': [('state', '!=', 'first_confirm')]}"/>-->
+
+                        <button name="second_confirm" string="Confirm Second Semester Result" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': ['|',('state', '!=', 'first_confirm'),('approve_state', '!=', 'academic_office')]}"/>
+<!--                        <button name="second_draft" string="Reset to draft" type="object"-->
+<!--                                attrs="{'invisible': [('state', '!=', 'second_confirm')]}"/>-->
+
+                        <button name="set_approve_department" string="Department approve" type="object"
+                                class="oe_highlight" attrs="{'invisible': [('approve_state', '!=', 'preparation')]}"/>
+                        <button name="set_approve_academic" string="Academic approve" type="object"
+                                attrs="{'invisible': [('approve_state', '!=', 'department')]}"/>
+
+
+                        <button confirm="Do you need to move the students to next Level !" name="move_to_next_semester"
+                                string="Move Student" class="oe_highlight" type="object"/>
+
+                        <!-- <button  name="create_history_supplement_carry" string="Confirm" class="oe_highlight" type="object"/> -->
+
+                        <button string="Print" name="execute_sql_query" type="object" class="oe_highlight"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,first_confirm,second_draft,second_confirm"/>
+                    </header>
+                    <sheet>
+                        <field name="approve_state" invisible="0"/>
+                        <widget name="web_ribbon" title="Department"
+                                attrs="{'invisible': [('approve_state', '!=', 'department')]}"
+                                bg_color="bg-warning"/>
+                        <widget name="web_ribbon" title="Academic Office"
+                                attrs="{'invisible': ['|',('state', '!=', 'first_confirm'),('approve_state', '!=', 'academic_office')]}"
+                                bg_color="bg-warning"/>
+                        <widget name="web_ribbon" title="Confirmed"
+                                attrs="{'invisible': [('state', '!=', 'first_confirm'),('state', '!=', 'second_confirm')]}"
+                                bg_color="bg-success"/>
+                        <div class="oe_button_box" name="button_box" position="inside">
+                            <button name="action_supplement" type="object" class="oe_stat_button" icon="fa-user"
+                                    attrs="{'invisible': ['|',('supplement_count', '=', 0),('exam_type','=','supplement_exam')]}">
+                                <div class="o_stat_info">
+                                    <field name="supplement_count" class="o_stat_value"/>
+                                    <span class="o_stat_text">Supplement</span>
+                                </div>
+                            </button>
+                            <button name="action_portable" type="object" class="oe_stat_button" icon="fa-user"
+                                    attrs="{'invisible': ['|',('portable_count', '=', 0),('exam_type','=','final')]}">
+                                <div class="o_stat_info">
+                                    <field name="portable_count" class="o_stat_value"/>
+                                    <span class="o_stat_text">Portables</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="Name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="exam_type"/>
+                                <field name="college"/>
+                                <field name="department"
+                                       attrs="{'invisible':[('is_department','=',False)],'required':[('is_department','=',True)]}"/>
+                                <field name="specialist_id"
+                                       attrs="{'required':[('state','!=','old'),('is_specialist','=',True)],'invisible':[('is_specialist','=',False)]}"/>
+                            </group>
+                            <group>
+                                <field name="level"/>
+                                <field name="academic_year"/>
+                                <field name="supplement_count" invisible="1"/>
+                                <field name="portable_count" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="program"/>
+                                <field name="class_id"/>
+                            </group>
+                            <group>
+                                <field name="result_date"/>
+                                <field name="data_type"/>
+                                <field name="is_department" force_save="1" invisible="1"/>
+                                <field name="is_specialist" force_save="1" invisible="1"/>
+                            </group>
+                            <group>
+                                <button name="open_note_wizard" string="Add note" type="object"/>
+                            </group>
+                            <group>
+                                <button name="action_add_degree" string="Add Degree" type="object"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="First Semester Result">
+                                <field name="firest_semstar"/>
+                                <field name="first_semester_n" nolabel="1"/>
+                                <field name="first_semester_result">
+                                    <tree>
+                                        <field name="student"/>
+                                        <field name="student_status"/>
+                                        <field name="class_id"/>
+                                        <field name="semster_degree"/>
+                                        <field name="semestar_pass_or_fail"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="student"/>
+                                            <field name="semster_degree" force_save="1"/>
+                                            <field name="semestar_pass_or_fail"/>
+                                            <field name="college_id" invisible="1"/>
+                                        </group>
+                                        <notebook>
+                                            <page string="Subjects Result" name="subject_result">
+                                                <field name="subject_line">
+                                                    <tree editable="bottom">
+                                                        <field name="subject"/>
+                                                        <field name="hours" sum="Total"/>
+                                                        <field name="degree"/>
+                                                        <field name="pass_or_fail" widget="boolean_toggle"/>
+                                                        <field name="degree_letter"/>
+                                                        <field name="note"/>
+                                                        <field name="sub_id"/>
+                                                        <field name="college_id" invisible="0"/>
+                                                        <field name="college" invisible="1"/>
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                            <page string="Note" name="note">
+                                                <field name="note_ids">
+                                                    <tree editable="top">
+                                                        <field name="note_select"/>
+                                                        <field name="note"/>
+                                                        <field name="note_details"/>
+                                                        <field name="note_en_details"/>
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                        </notebook>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Second Semester Result">
+                                <field name="second_semstar"/>
+                                <field name="second_semester_n" nolabel="1"/>
+                                <field name="second_semester_result">
+                                    <tree>
+                                        <field name="student"/>
+                                        <field name="student_status"/>
+                                        <field name="class_id"/>
+                                        <field name="semster_degree"/>
+                                        <field name="semestar_pass_or_fail"/>
+                                        <field name="level_degree"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="student"/>
+                                            <field name="semster_degree" force_save="1"/>
+                                            <field name="semestar_pass_or_fail"/>
+                                            <field name="level_degree"/>
+                                            <field name="college_id" invisible="1"/>
+                                        </group>
+                                        <notebook>
+                                            <page string="Subjects Result" name="subject_result">
+                                                <field name="subject_line">
+                                                    <tree editable="bottom">
+                                                        <field name="subject"/>
+                                                        <field name="hours" sum="Total"/>
+                                                        <field name="degree"/>
+                                                        <field name="pass_or_fail" widget="boolean_toggle"/>
+                                                        <field name="degree_letter"/>
+                                                        <field name="note"/>
+                                                        <field name="sub_id"/>
+                                                        <field name="college" invisible="0"/>
+                                                        <field name="college_id" invisible="1"/>
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                            <page string="Note" name="note">
+                                                <field name="note_ids">
+                                                    <tree editable="top">
+                                                        <field name="note_select"/>
+                                                        <field name="note"/>
+                                                        <field name="note_details"/>
+                                                        <field name="note_en_details"/>
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                        </notebook>
+                                    </form>
+                                </field>
+                            </page>
+
+                            <page string="Note for all batch result">
+                                <field name="note_ids">
+                                    <tree editable="top">
+                                        <field name="note_select"/>
+                                        <field name="note"/>
+                                        <field name="note_details"/>
+                                        <field name="note_en_details"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="result_tree" model="ir.ui.view">
+            <field name="name">ums.result.tree</field>
+            <field name="model">ums.result</field>
+            <field name="arch" type="xml">
+                <tree string="Results">
+                    <field name="name"/>
+                    <field name="exam_type"/>
+                    <field name="college"/>
+                    <field name="department"/>
+                    <field name="specialist_id"/>
+                    <field name="level"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ums_result_search" model="ir.ui.view">
+            <field name="name">ums.result.search</field>
+            <field name="model">ums.result</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <searchpanel>
+                        <field name="college" icon="fa-users" string="College" enable_counters="1"/>
+                        <field name="department" icon="fa-users" string="Department" enable_counters="1"/>
+                         <field name="class_id" icon="fa-users" string="Class" enable_counters="1"/>
+                        <field name="state" icon="fa-users" string="state" enable_counters="1"/>
+                        <field name="exam_type" icon="fa-users" string="Result Type" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+        <record id="result_action" model="ir.actions.act_window">
+            <field name="name">Results</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ums.result</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Result , create one
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
