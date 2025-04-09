@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="ums_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_student"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_student"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_college_collage" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_college"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_collage" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_college"/>
+            <field name="domain_force">[('id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_program_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_program"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_program_college" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_program"/>
+            <field name="domain_force">[('college',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_exam_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_exam"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_exam_college" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_exam"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_evaluation_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_exam_evaluation"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_evaluation_college" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_exam_evaluation"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_class_coolege" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_class"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_class_college" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_class"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_college_department" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_department"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_department" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_department"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_college_level" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_level"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_level" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_level"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_academic_year_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_academic_year"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_academic_year" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_academic_year"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_subject_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_subject"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_subject" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_subject"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+        
+        <record id="ums_ums_division_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_division"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_division" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_division"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_semester_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_semester"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_semester" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_semester"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_group_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_group"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_group" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_group"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_specialist_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_specialist"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_specialist" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_specialist"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_nationality_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_nationality"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_nationality" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_nationality"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_result_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_result"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_result" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_result"/>
+            <field name="domain_force">[('college',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_supplement_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_supplement"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_supplement" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_supplement"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_portable_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_portable"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_portable" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_portable"/>
+            <field name="domain_force">[('college_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+
+        <record id="ums_ums_result_history_college" model="ir.rule">
+            <field name="name">Administrator group can see all data</field>
+            <field name="model_id" ref="model_ums_result_history"/>
+            <field name="domain_force">[(1,"=",1)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_administrator'))]"/>
+        </record>
+        <record id="ums_user_college_result_history" model="ir.rule">
+            <field name="name">user group see only his college data</field>
+            <field name="model_id" ref="model_ums_result_history"/>
+            <field name="domain_force">[('collage_id',"in",user.collage_ids.ids)]</field>
+            <field name="groups" eval="[(4,ref('ums.group_university_examation_secretary')),(4,ref('ums.group_university_user')),(4,ref('ums.group_university_dean')),(4,ref('ums.group_university_registrar'))]"/>
+        </record>
+    </data>
+
+</odoo>

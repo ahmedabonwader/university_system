@@ -1,0 +1,118 @@
+<odoo>
+  <data>
+    <record id="college_form" model="ir.ui.view">
+        <field name="name">Colleges form</field>
+        <field name="model">ums.college</field>
+        <field name="arch" type="xml">
+            <form string="Colleges">
+                <sheet>
+                    <div class="oe_title">
+                       <label for="name" string="Name"/>
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <div class="oe_title">
+                       <label for="english_name" string="English Name"/>
+                        <h1>
+                            <field name="english_name"/>
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page string="Departments" name="department">
+                            <field name="department_ids">
+                                <tree create='0'>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Collage Information" name="collage_information">
+                            <group>
+                                <group>
+                                    <field name="dean_name"/>
+                                    <field name="dean_english_name"/>
+                                </group>
+                                <group>
+                                    <field name="registrar_name"/>
+                                    <field name="registrar_english_name"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group>
+                                    <field name="certificate_id"/>
+                                    <field name="en_certificate_id"/>
+                                    <field name="is_portable"/>
+                                    <field name="specialist"/>
+                                </group>
+                                 <group>
+                                    <field name="report_certificate_id"/>
+                                    <field name="en_report_certificate_id"/>
+                                    <field name="department"/>
+                                    <field name="is_final_result_letter"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Rates Equations" name="calculation_page">
+                            <group>
+                                <field name="python_code"/>
+                            </group>
+                            <group>
+                                <field name="leveL_calculate"/>
+                            </group>
+                        </page>
+                        <page string="Repeat Condition" name="repeat_page">
+                            <group>
+                                <field name="hours_repeat_percent"/>
+                            </group>
+                            <group>
+                                <field name="external_1_percent"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                 <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="college_tree" model="ir.ui.view">
+        <field name="name">Colleges list</field>
+        <field name="model">ums.college</field>
+        <field name="arch" type="xml">
+            <tree string="Colleges">
+                <field name="name"/>
+                <field name="english_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_coolage_search" model="ir.ui.view">
+        <field name="name">ums.college.search</field>
+        <field name="model">ums.college</field>
+        <field name="arch" type="xml">
+            <search string="Activity">
+                <field name="name"/>
+                <field name="english_name"/>
+            </search>
+        </field>
+    </record>
+    
+    <record id="college_action" model="ir.actions.act_window">
+        <field name="name">Colleges</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.college</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a College
+            </p>
+        </field>
+    </record>
+    
+
+  </data>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ums_specialist_tree" model="ir.ui.view">
+        <field name="name">university.specialist.tree</field>
+        <field name="model">ums.specialist</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="english_name"/>
+                <field name="college_id"/>
+                <field name="department_id"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ums_specialist_form" model="ir.ui.view">
+        <field name="name">ums.specialist.form</field>
+        <field name="model">ums.specialist</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="english_name"/>
+                        </group>
+                        <group >
+                            <field name="college_id"/>
+                            <field name="is_department" invisible="1" force_save="1"/>
+                            <field name="department_id" attrs="{'invisible':[('is_department','=',False)],'required':[('is_department','=',True)]}"/>
+                            <field name="code" />
+                        </group>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+    <record id="view_specialist_search" model="ir.ui.view">
+        <field name="name">ums.specialist.search</field>
+        <field name="model">ums.specialist</field>
+        <field name="arch" type="xml">
+            <search string="Activity">
+                <field name="name"/>
+                <field name="english_name"/>
+                <searchpanel>
+                    <field name="college_id" icon="fa-users" string="Collage" enable_counters="1"/>
+                    <field name="department_id" icon="fa-users" string="Department" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ums_specialist" model="ir.actions.act_window">
+        <field name="name">Specialist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.specialist</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Specialist!
+            </p>
+        </field>
+    </record>
+    
+    
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="module_category_university_management_system">
+            <field name="name">University Management System</field>
+            <field name="description">Category For University Management System</field>
+        </record>
+
+        <record id="group_university_administrator" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="users" eval="[(4, ref('base.user_root')),(4, ref('base.user_admin'))]"/>
+            <field name="category_id" ref="module_category_university_management_system"/>
+        </record>
+        <record id="group_university_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_category_university_management_system"/>
+        </record>
+        <record id="group_university_dean" model="res.groups">
+            <field name="name">Dean</field>
+            <field name="category_id" ref="module_category_university_management_system"/>
+        </record>
+        <record id="group_university_examation_secretary" model="res.groups">
+            <field name="name">Examation Secretary</field>
+            <field name="category_id" ref="module_category_university_management_system"/>
+        </record>
+        <record id="group_university_examation" model="res.groups">
+            <field name="name">Examation</field>
+            <field name="category_id" ref="module_category_university_management_system"/>
+        </record>
+        <record id="group_university_registrar" model="res.groups">
+            <field name="name">Register</field>
+            <field name="category_id" ref="module_category_university_management_system"/>
+        </record>
+        <record id="group_university_data_enter" model="res.groups">
+            <field name="name">Data Enter</field>
+            <field name="category_id" ref="module_category_university_management_system"/>
+        </record>
+    </data>
+</odoo>

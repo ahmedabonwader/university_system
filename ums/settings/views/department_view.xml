@@ -1,0 +1,43 @@
+<odoo>
+  <data>
+    <record id="department_tree" model="ir.ui.view">
+        <field name="name">Departments list</field>
+        <field name="model">ums.department</field>
+        <field name="arch" type="xml">
+            <tree string="Departments" editable="top">
+                <field name="name"/>
+                <field name="english_name"/>
+                <field name="college_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_department_search" model="ir.ui.view">
+        <field name="name">ums.department.search</field>
+        <field name="model">ums.department</field>
+        <field name="arch" type="xml">
+            <search string="Activity">
+                <field name="name"/>
+                <field name="english_name"/>
+                <searchpanel>
+                    <field name="college_id" icon="fa-users" string="Collage" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="department_action" model="ir.actions.act_window">
+        <field name="name">Departments</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.department</field>
+        <field name="view_mode">tree,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Department
+            </p>
+        </field>
+    </record>
+    
+
+  </data>
+</odoo>

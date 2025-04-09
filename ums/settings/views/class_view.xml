@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_university_class_kanban">
+        <field name="name">university.class.kanban</field>
+        <field name="model">ums.class</field>
+        <field name="arch" type="xml">
+            <kanban class="education_class_division_kanban">
+                <field name="name"/>
+                <field name="college_id"/>
+                <field name="specialist_id"/>
+                <field name="academic_year"/>
+                <field name="faculity_id"/>
+                <field name="class_strength"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban">
+                            <div class="oe_kanban_details">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings" style="text-align:center !important;">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                <ul style="text-align:center !important;">
+                                    <li t-if="record.class_strength.raw_value">
+                                        Strength : <field name="class_strength"/>
+                                    </li>
+                                    <li t-if="record.academic_year.raw_value">
+                                        Academic Year : <field name="academic_year"/>
+                                    </li>
+                                    <li t-if="record.college_id.raw_value">
+                                        College : <field name="college_id"/>
+                                    </li>
+                                    <li t-if="record.specialist_id.raw_value">
+                                        Specialist : <field name="specialist_id"/>
+                                    </li>
+                                    <li t-if="record.faculity_id.raw_value">
+                                        Faculty : <field name="faculity_id"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_university_class_tree" model="ir.ui.view">
+        <field name="name">university.class.tree</field>
+        <field name="model">ums.class</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="english_name"/>
+                <field name="code"/>
+                <field name="group_id"/>
+                <field name="college_id"/>
+                <field name="specialist_id"/>
+                <field name="class_strength"/>
+                <field name="academic_year"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_university_class_form" model="ir.ui.view">
+        <field name="name">university.class.form</field>
+        <field name="model">ums.class</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" position="inside">
+                        <button name="action_student" type="object" class="oe_stat_button" icon="fa-user" attrs="{'invisible': [('student_count', '=', 0)]}">
+                            <div class="o_stat_info">
+                                <field name="student_count" class="o_stat_value"/>
+                                <span class="o_stat_text">Student</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="english_name"/>
+                            <field name="college_id"/>
+                            <field name="program_id"/>
+                            <field name="department_id" attrs="{'invisible':[('is_department','=',False)],'required':[('is_department','=',True)]}"/>
+                            <field name="specialist_id" attrs="{'invisible':[('is_specialist','=',False)],'required':[('is_specialist','=',True)]}"/>
+                            <field name="level"/>
+                        </group>
+                        <group >
+                            <field name="academic_year" domain="[('academic_active','=',True)]"/>
+                            <field name="code"/>
+                            <field name="group_id"/>
+                            <field name="faculity_id"/>
+                            <field name="semester_id"/>
+                            <field name="class_strength"/>
+                            <field name="is_department" invisible="1" force_save="1"/>
+                            <field name="is_specialist" invisible="1" force_save="1"/>
+
+                            <!-- <field name="student_count"/> -->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="name" string="Student">
+                            <field name="std_line_ids" >
+                                <tree  delete="0">
+                                    <field name="name" />     
+                                    <field name="gender" />     
+                                    <field name="age"/>     
+                                    <field name="blood_group"/>     
+                                    <!-- <field name="semestar_id"/>   -->
+                                </tree>
+                            </field>      
+                        </page>
+                </notebook>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+    <record id="view_university_student_search" model="ir.ui.view">
+        <field name="name">university.class.search</field>
+        <field name="model">ums.class</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_collage" string="Collage" context="{'group_by': 'college_id'}"/>
+                    <filter name="group_by_department" string="Department" context="{'group_by': 'department_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="college_id" icon="fa-users" string="Collage" enable_counters="1"/>
+                    <field name="department_id" icon="fa-users" string="Department" enable_counters="1"/>
+                    <field name="specialist_id" icon="fa-users" string="Specialist" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_university_class" model="ir.actions.act_window">
+        <field name="name">Class</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.class</field>
+        <field name="view_mode">kanban,tree,form,search</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Acadimic Class
+            </p>
+        </field>
+    </record>
+
+    
+    
+</odoo>

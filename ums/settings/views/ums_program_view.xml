@@ -1,0 +1,126 @@
+<odoo>
+    <data>
+        <record id="ums_program_form" model="ir.ui.view">
+            <field name="name">Program</field>
+            <field name="model">ums.program</field>
+            <field name="arch" type="xml">
+                <form string="Programs">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <div class="oe_title">
+                            <label for="degree_name" string="Degree Name"/>
+                            <h1>
+                                <field name='degree_name'/>
+                            </h1>
+                        </div>
+                        <div class="oe_title">
+                            <label for="english_name" string="English Name"/>
+                            <h1>
+                                <field name="english_name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="college" force_save='1'/>
+                                <field name="department" force_save='1' attrs="{'invisible':[('is_department','=',False)]}"/>
+                                <field name="specialist_id" attrs="{'invisible':[('is_specialist','=',False)]}"/>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                                <field name="program_type"/>
+                                <field name="is_department" invisible='1'/>
+                                <field name="is_specialist" invisible='1'/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Levels" name="level_line">
+                                <field name="level_line">
+                                    <tree>
+                                        <field name="level_seq" widget="handle"/>
+                                        <field name="level"/>
+                                        <field name="is_final"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="level"/>
+                                            <field name="college" invisible="1"/>
+                                            <field name="is_final"/>
+                                        </group>
+                                        <notebook>
+                                            <page string="Semesters" name="semester_line">
+                                                <field name="semester_line">
+                                                    <tree>
+                                                        <field name="sem_seq" widget="handle"/>
+                                                        <field name="semester_id"/>
+                                                    </tree>
+                                                    <form>
+                                                        <group>
+                                                            <field name="semester_id"/>
+                                                            <field name="college" invisible="1"/>
+                                                        </group>
+                                                        <notebook>
+                                                            <page string="Subjects" name="subject_line">
+                                                                <field name="subject_line">
+                                                                    <tree editable="bottom">
+                                                                        <field name="subject"/>
+                                                                        <field name="college" invisible="1"/>
+                                                                    </tree>
+                                                                </field>
+                                                            </page>
+                                                        </notebook>
+                                                    </form>
+                                                </field>
+                                            </page>
+                                        </notebook>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="ums_program_tree" model="ir.ui.view">
+            <field name="name">Programs list</field>
+            <field name="model">ums.program</field>
+            <field name="arch" type="xml">
+                <tree string="Colleges">
+                    <field name="name"/>
+                    <field name="english_name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_program_search" model="ir.ui.view">
+            <field name="name">ums.program.search</field>
+            <field name="model">ums.program</field>
+            <field name="arch" type="xml">
+                <search string="Activity">
+                    <field name="name"/>
+                    <field name="english_name"/>
+                    <searchpanel>
+                        <field name="college" icon="fa-users" string="Collage" enable_counters="1"/>
+                        <field name="department" icon="fa-users" string="Department" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+        <record id="program_action" model="ir.actions.act_window">
+            <field name="name">Programs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ums.program</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Program
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

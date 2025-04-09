@@ -1,0 +1,73 @@
+<odoo>
+  <data>
+      
+    <record id="subject_tree" model="ir.ui.view">
+        <field name="name">Subjects list</field>
+        <field name="model">ums.subject</field>
+        <field name="arch" type="xml">
+            <tree string="Subjects">
+                <field name="name"/>
+                <field name="english_name"/>
+                <field name="college_id"/>
+                <field name="hours"/>
+                <field name="lab"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_ums_subject_form" model="ir.ui.view">
+        <field name="name">ums.subject.form</field>
+        <field name="model">ums.subject</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="college_id"/>
+                            <field name="weight"/>
+                        </group>
+                        <group >
+                            <field name="english_name"/>
+                            <field name="hours"/>
+                            <field name="lab"/>
+                        </group>
+                    </group>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+    <record id="view_subject_search" model="ir.ui.view">
+        <field name="name">ums.subject.search</field>
+        <field name="model">ums.subject</field>
+        <field name="arch" type="xml">
+            <search string="Activity">
+                <field name="name"/>
+                <field name="english_name"/>
+                <searchpanel>
+                    <field name="college_id" icon="fa-users" string="Collage" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+    <record id="subject_action" model="ir.actions.act_window">
+        <field name="name">Subjects</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.subject</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a subject
+            </p>
+        </field>
+    </record>
+    
+
+  </data>
+</odoo>

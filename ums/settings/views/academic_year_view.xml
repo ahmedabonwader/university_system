@@ -1,0 +1,44 @@
+<odoo>
+  <data>
+    <record id="academic_year_tree" model="ir.ui.view">
+        <field name="name">Academics years list</field>
+        <field name="model">ums.academic.year</field>
+        <field name="arch" type="xml">
+            <tree string="Academics years" editable="top">
+                <field name="name"/>
+                <field name="english_name"/>
+                <field name="code"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="college_id"/>
+                <field name="academic_active"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_academic_year_search" model="ir.ui.view">
+        <field name="name">ums.academic.year.search</field>
+        <field name="model">ums.academic.year</field>
+        <field name="arch" type="xml">
+            <search string="Activity">
+                <field name="name"/>
+                <field name="english_name"/>
+                <searchpanel>
+                    <field name="college_id" icon="fa-users" string="Collage" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+    <record id="academic_year_action" model="ir.actions.act_window">
+        <field name="name">Academics</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ums.academic.year</field>
+        <field name="view_mode">tree,search</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a academic year
+            </p>
+        </field>
+    </record>
+  </data>
+</odoo>

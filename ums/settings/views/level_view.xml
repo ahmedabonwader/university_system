@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+
+        <record id="level_tree" model="ir.ui.view">
+            <field name="name">Levels list</field>
+            <field name="model">ums.level</field>
+            <field name="arch" type="xml">
+                <tree string="Levels" editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="english_name"/>
+                    <field name="college_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_level_search" model="ir.ui.view">
+            <field name="name">ums.level.search</field>
+            <field name="model">ums.level</field>
+            <field name="arch" type="xml">
+                <search string="Activity">
+                    <field name="name"/>
+                    <field name="english_name"/>
+                    <searchpanel>
+                        <field name="college_id" icon="fa-users" string="Collage" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+        <record id="level_action" model="ir.actions.act_window">
+            <field name="name">Levels</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ums.level</field>
+            <field name="view_mode">tree,search</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a level
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

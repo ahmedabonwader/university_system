@@ -1,0 +1,77 @@
+<odoo>
+    <data>
+        <record id="ums_letter_degree_form" model="ir.ui.view">
+            <field name="name">ums.letter.degree.form</field>
+            <field name="model">ums.letter.degree</field>
+            <field name="arch" type="xml">
+                <form string="Colleges">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <div class="oe_title">
+                            <label for="english_name" string="English Name"/>
+                            <h1>
+                                <field name="english_name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="maximum_marks"/>
+                                <field name="college_id"/>
+                            </group>
+                            <group>
+                                <field name="minimum_marks"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="ums_letter_degree_tree" model="ir.ui.view">
+            <field name="name">ums.letter.degree.tree</field>
+            <field name="model">ums.letter.degree</field>
+            <field name="arch" type="xml">
+                <tree string="Letter Degree">
+                    <field name="name"/>
+                    <field name="english_name"/>
+                    <field name="maximum_marks"/>
+                    <field name="minimum_marks"/>
+                    <field name="college_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_letter_degree_search" model="ir.ui.view">
+            <field name="name">ums.letter.degree.search</field>
+            <field name="model">ums.letter.degree</field>
+            <field name="arch" type="xml">
+                <search string="Activity">
+                    <field name="name"/>
+                    <field name="english_name"/>
+                    <searchpanel>
+                        <field name="college_id" icon="fa-users" string="Collage" enable_counters="1"/>
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+        <record id="letter_degree_action" model="ir.actions.act_window">
+            <field name="name">Letter Degree</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ums.letter.degree</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Letter Degree
+                </p>
+            </field>
+        </record>
+
+ 
+        
+
+    </data>
+</odoo>

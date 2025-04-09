@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="ums_menu_parent"
+            name="UMS"/>
+
+    <menuitem
+            name="Student"
+            id="ums_student_menu"
+            parent="ums_menu_parent"
+            action="student_action"
+            sequence="1"
+            groups="group_university_data_enter,group_university_examation_secretary,group_university_administrator,group_university_user,group_university_dean,group_university_registrar"/>
+            
+    <menuitem
+            name="Faculties"
+            id="ums_faculty_menu"
+            parent="ums_menu_parent"
+            action="action_ums_faculty"
+            sequence="2"
+            active="false"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_user,group_university_dean,group_university_registrar"/>
+	<menuitem
+            name="Registration"
+            id="registration_parent_menu"
+            parent="ums_menu_parent"
+            sequence="3"
+            groups="group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Registration"
+            id="registration_menu"
+            parent="registration_parent_menu"
+            sequence="1"
+            action="action_ums_registration"
+            groups="group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Freezing year"
+            id="freezing_year_menu"
+            parent="registration_parent_menu"
+            sequence="2"
+            action="action_ums_freezing_year"
+            groups="group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Quitted"
+            id="ums_quitted_menu"
+            parent="registration_parent_menu"
+            sequence="3"
+            action="action_ums_quitted"
+            groups="group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Exams"
+            id="exam_parent_menu"
+            parent="ums_menu_parent"
+            sequence="3"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Exam Type"
+            id="exam_type_menu"
+            parent="exam_parent_menu"
+            action="action_ums_exam_type"
+            sequence="1"
+            active="false"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Exams"
+            id="exam_menu"
+            parent="exam_parent_menu"
+            action="action_ums_exam"
+            sequence="2"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Exam Evaluation"
+            id="exam_evaluation_menu"
+            parent="exam_parent_menu"
+            action="action_ums_exam_evaluation"
+            sequence="3"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+
+
+    <menuitem
+            name="Results"
+            id="result_menu"
+            parent="ums_menu_parent"
+            sequence="4"
+            groups="group_university_data_enter,group_university_user,group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Results"
+            id="result_child_menu"
+            parent="result_menu"
+            action="result_action"
+            sequence="1"
+            groups="group_university_data_enter,group_university_user,group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+
+    <menuitem
+            name="Configuration"
+            id="conf_menu"
+            parent="ums_menu_parent"
+            sequence="15"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            id="academic_secretary_menu"
+            name="Academic Secretary"
+            action="action_academic_secretary_config"
+            parent="conf_menu"
+            sequence="-1"
+            groups="base.group_system,group_university_administrator,group_university_dean,group_university_registrar" 
+            />
+
+    <menuitem
+            name="General"
+            id="general_conf_menu"
+            parent="conf_menu"
+            sequence="1"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+
+
+    <menuitem
+            name="Colleges"
+            id="college_menu"
+            parent="general_conf_menu"
+            action="college_action"
+            sequence="1"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Departments"
+            id="department_menu"
+            parent="general_conf_menu"
+            action="department_action"
+            sequence="2"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Levels"
+            id="level_menu"
+            parent="general_conf_menu"
+            action="level_action"
+            sequence="3"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Academics years"
+            id="academic_year_menu"
+            parent="general_conf_menu"
+            action="academic_year_action"
+            sequence="4"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Subjects"
+            id="subject_menu"
+            parent="general_conf_menu"
+            action="subject_action"
+            sequence="5"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Divisions"
+            id="division_menu"
+            parent="general_conf_menu"
+            action="division_action"
+            sequence="6"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Semesters"
+            id="semester_menu"
+            parent="general_conf_menu"
+            action="semester_action"
+            sequence="7"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Groups"
+            id="group_menu"
+            parent="general_conf_menu"
+            action="action_ums_group"
+            sequence="8"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Specialists"
+            id="specialist_menu"
+            parent="general_conf_menu"
+            action="action_ums_specialist"
+            sequence="9"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Programs"
+            id="program_menu"
+            parent="general_conf_menu"
+            action="program_action"
+            sequence="10"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Nationalities"
+            id="nationality_menu"
+            parent="general_conf_menu"
+            action="action_ums_nationality"
+            sequence="11"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Letter Degree"
+            id="ums_letter_degree_menu"
+            parent="general_conf_menu"
+            action="letter_degree_action"
+            sequence="12"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Note List"
+            id="ums_note_list_menu"
+            parent="general_conf_menu"
+            action="ums_note_list_action"
+            sequence="14"
+            groups="group_university_data_enter,group_university_user,group_university_administrator,group_university_dean,group_university_registrar"/>
+    
+    <menuitem
+            name="Classes"
+            id="ums_class_menu"
+            parent="ums_menu_parent"
+            action="action_university_class"
+            sequence="5"
+            groups="group_university_data_enter,group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+
+    <menuitem
+            name="Certificates Requests"
+            id="request_certificate"
+            parent="ums_menu_parent"
+            action="request_certificate_action"
+            sequence="11"
+            groups="group_university_administrator,group_university_user"/>
+
+    <menuitem
+            name="Result History"
+            id="history_result_menu"
+            parent="ums_menu_parent"
+            action="action_ums_result_history"
+            active="false"
+            sequence="12"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+
+    <menuitem
+            name="Supplement"
+            id="supplement_menu"
+            parent="ums_menu_parent"
+            action="action_ums_supplement"
+            sequence="13"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Portable"
+            id="portable_menu"
+            parent="ums_menu_parent"
+            action="action_ums_portable"
+            sequence="14"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+    <menuitem
+            name="Transferred"
+            id="transferred_menu"
+            parent="ums_menu_parent"
+            action="ums_transferred_action"
+            sequence="10"
+            groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>
+            
+    <menuitem
+            name="Absent"
+            id="ums_absent"
+            parent="ums_menu_parent"
+            action="action_ums_absent"
+            sequence="14"
+            groups="group_university_administrator"/>
+
+<!--    <menuitem-->
+<!--          name="Print Result"-->
+<!--          id="wizard_semester_result_menu" -->
+<!--          parent="ums_menu_parent"-->
+<!--          action="semsester_result_wizard_action"-->
+<!--          sequence="6"-->
+<!--          groups="group_university_examation_secretary,group_university_administrator,group_university_dean,group_university_registrar"/>-->
+
+</odoo>
