@@ -1,0 +1,377 @@
+/* ============================== Arabic Style =========================== */
+@font-face {
+    /* font for times new roman cyr */
+    font-family: 'times_cyr';
+    src: url('/ums/static/src/fonts/times new roman.ttf') format('truetype');
+}
+@font-face {
+    /* font for times new roman regular */
+    font-family: 'my_times';
+    src: url('/ums/static/src/fonts/times.ttf') format('truetype');
+}
+@font-face {
+    /* font for times new roman bold regular */
+    font-family: 'times_bold';
+    src: url('/ums/static/src/fonts/times new roman bold.ttf') format('truetype');
+}
+.main_div_edu {
+    font-family: my_times;
+    padding-top:38mm;
+    font-size: 13pt; width:100%;
+    border:0px solid black;
+}
+.main_div {
+    font-family: my_times;
+    padding-top:25mm;
+    font-size: 13pt; width:100%;
+    border:0px solid black;
+}
+.main_div_dep {
+    font-family: my_times;
+    padding-top:2mm;
+    font-size: 13pt; width:100%;
+    border:0px solid black;
+}
+.address_content {
+    width:96%;
+    border: #000 solid 0px;
+
+}
+#student_content {
+    text-align:left;
+    width: 26% ;
+    font-weight:bold;
+    font-size: 13pt;
+    border: #000 solid 0px;
+}
+#student-number{
+    padding-bottom:-50px ;
+    font-size: 17px;
+    position:relative; 
+    top:3.2em;
+    direction:rtl; 
+}
+#address{
+    text-align:center; 
+    width: 50%; 
+    font-size: 18px;
+}
+#address span{
+    font-size:14pt;
+    font-weight:bold;
+}
+.paragraph-title{
+    width:94%;
+    margin-right:20px;
+    font-size: 17pt;
+    border-top: 5px double black; 
+    direction:rtl;
+    text-align:justify;
+}
+#para-intro{
+    padding-left:25px;
+    /* font-size:18pt; */
+   line-height:0.5em;
+}
+#para{
+    font-weight: bold; 
+    line-height:0.5em;
+    
+}
+#para-spaci{
+    text-align:right; 
+    font-weight: none;
+    line-height:1em;
+}
+.container{
+    margin:-15px 20px 0px 0px;
+    width:96%;
+    border:0px solid black;
+    padding:3px;
+}
+
+#container-level{
+    text-align:center;
+    font-size:12pt;
+    font-weight: bold;
+    padding-top: 5px;
+}
+#container-semester{
+    font-size:11pt;
+    text-align:center; 
+    font-weight: bold;
+}
+.table_semester_one{
+    width:49%;
+    border:2px solid #000;
+    font-weight:bold;
+    font-weight:inherit
+}
+.table_semester_one thead{
+    display: table-row-group;
+    font-size:13pt;
+    background-color:#eff3f4;
+}
+.table_semester_one thead tr th{
+    border:1px solid #000;
+    position:relative;
+    top:6px;
+    text-align:center;
+    padding:3px;
+    width:60%;
+}
+.table_semester_one thead tr #head_degree{
+    text-align:center;
+    position:relative;
+    top:6px;
+    padding: 3px;
+    width:20% ;
+}
+.table_semester_one thead tr #head_hour{
+    border:1px solid #000 ;
+    text-align:center;
+    position:relative;
+    top:-2px;
+    padding:3px;
+    width:20% ;
+}
+.table_semester_one tbody{
+    font-size:13pt; 
+    font-weight:bold; 
+    word-spacing:1ems;
+}
+.table_semester_one tbody tr #body_subject{
+    border:1px solid #000; 
+    white-space:nowrap; 
+    text-align: right;
+    padding-right:10px; 
+    width:60%
+}
+.table_semester_one tbody tr #body_degree{
+    border:1px solid #000; 
+    text-align:center; 
+    width:20%; 
+    direction:ltr;
+    font-family: FreeSerif;
+}
+.table_semester_one tbody tr #body_hour{
+    border:1px solid #000; 
+    text-align:center; 
+    width:20%;
+}
+.table_semester_one .hach{
+    border:1px solid #000; 
+    padding:4px; 
+    font-size:13.3pt; 
+    text-align: right; 
+    padding-right:10px; 
+    width:60%
+}
+
+.hour_total{
+    text-align:left; 
+    margin-top:10px; 
+    width:30%; 
+    font-family:my_times; 
+    /* margin-right:430px; */
+    font-size:18px;
+    font-weight:bold;
+    position:relative;
+    right: 27em;
+    top:-9px;
+}
+.gpa_degree{
+    text-align:right; 
+    width:40%; 
+    font-family:my_times; 
+    position:relative;
+    right: 30px;
+    top:29px;
+    /* margin-left:200px;  */
+    font-size:18px; 
+    font-weight:bold;
+}
+
+
+
+/* ========================== computer and engineering =========================== */
+
+.container_edu{
+    margin:-20px 0px 0px 0px;
+    width:100%;
+    border:0px solid black;
+    padding:2px;
+}
+
+.table_semesters{
+    width:49%;
+    border:2px solid #000;
+    font-weight:bold;
+    font-weight:inherit
+}
+.table_semesters thead{
+    display: table-row-group;
+    font-size:12pt;
+    background-color:#eff3f4;
+}
+.table_semesters thead tr th{
+    border:1px solid #000;
+    position:relative;
+    top:6px;
+    text-align:center;
+    padding:2px;
+    width:60%;
+}
+.table_semesters thead tr .head_degree{
+    text-align:center;
+    position:relative;
+    top:6px;
+    padding: 3px;
+    width:20% ;
+}
+.table_semesters thead tr .head_hour{
+    border:1px solid #000 ;
+    text-align:center;
+    position:relative;
+    top:-1px;
+    padding:3px;
+    width:20% ;
+}
+.table_semesters tbody{
+    font-size:11.5pt; 
+    font-weight:bold; 
+    word-spacing:1ems;
+}
+.table_semesters tbody tr .body_subject{
+    border:1px solid #000; 
+    white-space:nowrap; 
+    text-align: right;
+    padding-right:5px; 
+    width:80%
+}
+.table_semesters tbody tr .body_degree{
+    border:1px solid #000; 
+    text-align:center; 
+    width:10%; 
+    direction:ltr;
+}
+.table_semesters tbody tr .body_hour{
+    border:1px solid #000; 
+    text-align:center; 
+    width:10%;
+}
+.table_semesters .hach{
+    border:1px solid #000; 
+    padding:4px; 
+    font-size:12pt; 
+    text-align: right; 
+    padding-right:10px; 
+    width:60%
+}
+.footer_name{
+    border:1px solid #000;  
+    background-color:#eff3f4; 
+    font-weight:bold; text-align:center
+}
+.footer_result {
+    border:1px solid #000; 
+    background-color:#eff3f4;
+}
+#table-blue-footer{
+    bottom:-7pt;
+    clear: both;
+    z-index:10;
+    margin-top:4em;
+    vertical-align:bottom;
+    height:5%;
+    width:100%;
+}
+@page {
+    @bottom-center{
+        center: element(table-blue-footer);
+    }
+}
+
+.footer_page_one{
+    height:65px; font-family:my_times; width:100%; border:0px solid #fff; position:absolute; top:290mm;
+}
+.footer_page_one_arb{
+    height:65px; font-family:my_times; width:100%; border:0px solid #fff; position:absolute; top:300mm;
+}
+.footer_page_two{
+    height:65px; font-family:my_times; width:100%; border:0px solid #fff; position:absolute; top:650mm;
+}
+.footer_page_two_arb{
+    height:65px; font-family:my_times; width:100%; border:0px solid #fff; position:absolute; top:670mm;
+}
+
+/* ============================== English Style =========================== */
+.main_dep{
+    font-family:times_cyr;
+    width:98%;
+    border:1px sold black;
+    padding-top:2mm;
+    margin-left:30px;
+    direction:ltr;
+}
+.main{
+    font-family:times_cyr;
+    width:98%;
+    border:1px sold black;
+    padding-top:25mm;
+    margin-left:30px;
+    direction:ltr;
+}
+.table_title2{
+    width:98%;
+    position:relative;
+    border: #000 solid 0px;
+    margin-left: 10px;
+}
+.student_contan{
+    text-align:left; 
+    width: 25%; 
+    border:0px solid black ;
+    font-weight:none;
+    font-size: 12pt;
+}
+.student_number{
+    font-size: 12pt; 
+    position:relative; 
+    top:3.7em;  
+    font-weight:bold; 
+    padding-bottom:-50px
+}
+.container_div{
+    margin-top:10px;
+    margin-left:-5px;
+    width:100%;
+    border:0px solid black;
+    padding:0px;
+}
+.titel{
+    text-align:center;
+    width: 60%; 
+    border:0px solid black;
+    font-size:15pt;
+}
+.titel span{
+    font-weight:bold;
+}
+.titel .titel_tel{
+    font-weight:bold;
+    font-size:14pt;
+}
+.table_header tr td .header_titel{
+margin:0px;
+width:98%;
+margin-left:10px;
+border-top: 5px double black ;
+text-align:justify;
+}
+.para_titel{
+    font-size:17.2pt;
+}
+.para_text{
+    font-weight: bold; font-size:17.2pt;
+}

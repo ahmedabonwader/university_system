@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_note_wizard" model="ir.ui.view">
+           <field name="name">note.wizard</field>
+           <field name="model">note.wizard</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <form string="Add note to all student in semester">
+                    <group>
+
+                        <group>
+                            <field name="result" string="Result"/>
+                        </group>
+                        <group>
+                            <field name="semester"/>
+                            <field name="note_select"/>
+                            <field name="note"/>
+                            <field name="note_details"/>
+                            <field name="note_en_details"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="validate" string="Validate" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+               </form>
+           </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="transferred_wizard_form" model="ir.ui.view">
+        <field name="name">transferred_wizard.form</field>
+        <field name="model">transferred.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_titel">
+                        <h3>
+                            <field name="student" />
+                        </h3>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="college_id"/>
+                            <field name="program"/>
+                        </group>
+                        <group>
+                            <field name="department"/>
+                        </group>
+                        <notebook>
+                            <page string="Transferred Informantion">
+                                <field name="transferred_lins_ids">
+                                    <tree editable="bottom" delete ="1" create="1">
+                                        <field name="level"/>
+                                        <field name="semester_id"/>
+                                        <field name="program" invisible="1"/>
+                                        <field name="subject" widget="many2many_tags"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group>
+                            <footer>
+                                <button name="action_transferred" string="Done" type="object" class="btn-primary"
+                                        data-hotkey="q"/>
+                                <button special="cancel" data-hotkey="z" string="Discard" class="btn-secondary"/>
+                            </footer>
+                        </group>
+                    </group>
+
+                </sheet>
+                
+            </form>
+        </field>
+    </record>
+    <record id="transferred_wizard_action" model="ir.actions.act_window">
+        <field name="name">Transferred</field>
+        <field name="res_model">transferred.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    
+</odoo>

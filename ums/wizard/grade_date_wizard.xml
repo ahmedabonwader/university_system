@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_grade_date_wizard" model="ir.ui.view">
+           <field name="name">grade.date.wizard</field>
+           <field name="model">grade.date.wizard</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <form string="Select Graduation date and check hijri date is correct">
+                    <group>
+                        <group>
+                            <field name="grade_date"/>
+                            <field name="hijri_grade_date"/>
+                            <field name="result_id" invisiable="True"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="validate" string="Validate" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+               </form>
+           </field>
+        </record>
+    </data>
+</odoo>

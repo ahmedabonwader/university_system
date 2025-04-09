@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_ceritfcat_wizard" model="ir.ui.view">
+           <field name="name">ceritifcat.wizard</field>
+           <field name="model">ceritifcat.wizard</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <form string="Select student">
+                    <group>
+                        
+                        <group>
+                            <field name="student" string="student" />
+                            
+                        </group>
+                        <group>
+                            <field name="language"/>
+                            <field name="details"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="validate" string="Validate" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+               </form>
+           </field>
+        </record>
+
+
+        <record id="ceritfcat_wizard_action" model="ir.actions.act_window">
+            <field name="name">Certificate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ceritifcat.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create First Result
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

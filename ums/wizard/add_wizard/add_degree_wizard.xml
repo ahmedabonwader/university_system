@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="add_degree_wizard_form" model="ir.ui.view">
+        <field name="name">add.degree.wizard.form</field>
+        <field name="model">add.degree.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="result_id" string="Name"/>
+                        <h1>
+                            <field name="result_id"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="first_semester" invisible="1"/>
+                            <field name="second_semester" invisible="1"/>
+                            <field name="select_semester"/>
+                            <field name="level_id"/>
+                        </group>
+                        <group>
+                            <field name="collage_id"/>
+                            <field name="program_id"/>
+                            <field name="department_id"/>
+                        </group>
+                        <group>
+                            <button name="action_add_subject" string="Add Subject" type="object" invisible="0"/>
+                        </group>
+                        <group>
+                            <button name="action_degree_update" string="Add Value" type="object" invisible="0"/>
+                        </group>
+                        <notebook>
+                            <page string="Information">
+                                <field name="degree_line_ids">
+                                    <tree editable="bottom" delete ="1" create="1">
+                                        <field name="subject_id" force_save="1"/>
+                                        <field name="value"/>
+                                        <field name="add_degree_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+<!--                        <group>-->
+<!--                            <footer>-->
+<!--                                <button name="action_transferred" string="Done" type="object" class="btn-primary"-->
+<!--                                        data-hotkey="q"/>-->
+<!--                                <button special="cancel" data-hotkey="z" string="Discard" class="btn-secondary"/>-->
+<!--                            </footer>-->
+<!--                        </group>-->
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record id="add_degree_wizard_action" model="ir.actions.act_window">
+        <field name="name">Add Degree</field>
+        <field name="res_model">add.degree.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target"></field>
+    </record>
+
+</odoo>

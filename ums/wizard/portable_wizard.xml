@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_portable_wizard" model="ir.ui.view">
+           <field name="name">portable.wizard</field>
+           <field name="model">portable.wizard</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <form string="Select Portable student">
+                <div class="oe_title">
+                   <label for="evaluation_id" string="Evaluation"/>
+                    <h1>
+                        <field name="evaluation_id" readonly="1"/>
+                    </h1>
+                </div>
+                    <group>
+                        <group>
+                            <!-- <field name="evaluation_id" string="Evaluation" readonly="1"/> -->
+                            <field name="student_ids" string="Students" widget="many2many_tags"/>
+                            <field name="class_id" string="class"/>
+                            <field name="college_id" string="Collage"/>
+                        </group>
+                        <group>
+                            <field name="student_status" string="Sudent Status"/>
+                            <field name="program_id" string="Program"/>
+                            <field name="level_id" string="Level"/>
+                            <field name="subject_id" string="Subject"/>
+                            <field name="specialist_id" string="Specialist"/>
+                             
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button name="validate" string="Validate" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+               </form>
+           </field>
+        </record>
+
+        <record id="portable_wizard_action" model="ir.actions.act_window">
+            <field name="name">Portoble</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">portable.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create First Portable
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
