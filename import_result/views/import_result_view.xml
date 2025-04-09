@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+        <record id="import_result_form" model="ir.ui.view">
+            <field name="name">Import Result form</field>
+            <field name="model">ums.import.result</field>
+            <field name="arch" type="xml">
+                <form string="import Results">
+                    <header>
+                        <button name="get_students_result" string="Progress" type="object" class="oe_highlight"/>
+                        <!-- <button name="get_students_result_line" string="Val" type="object" class="oe_highlight"/> -->
+                        <!-- <button name="set_to_done" string="Done" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
+                        <button name="set_to_new" string="Reset to new" type="object" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                        <button name="set_to_cancel" string="Cancel" type="object" attrs="{'invisible': [('state', '!=', 'new')]}"/> -->
+
+                        <!-- <field name="state" widget="statusbar"  statusbar_visible="new,in_progress,done,canceled"/> -->
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" string="Name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="college"/>
+                                <field name="department"/>
+                                <field name="specialist"/>
+                                <field name="program"/>
+                            </group>
+                            <group>
+                                <field name="classes"/>
+                                <field name="level"/>
+                                <field name="academic_year"/>
+                                 <field name="result_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="First Semester Result">
+                                <field name="firest_semstar"/>
+                                <field name="first_semester_result">
+                                    <tree create='0' edit='0' delete='1'>
+                                        <field name="student_name"/>
+                                        <field name="subject_1"/>
+                                        <field name="subject_2"/>
+                                        <field name="subject_3"/>
+                                        <field name="subject_4"/>
+                                        <field name="subject_5"/>
+                                        <field name="subject_6"/>
+                                        <field name="subject_7"/>
+                                        <field name="subject_8"/>
+                                        <field name="subject_9"/>
+                                        <field name="subject_10"/>
+                                        <field name="semster_degree"/>
+                                        <field name="note"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Second Semester Result">
+                                <field name="second_semstar"/>
+                                <field name="second_semester_result">
+                                    <tree create='0' edit='0' delete='1'>
+                                        <field name="student_name"/>
+                                        <field name="subject_1"/>
+                                        <field name="subject_2"/>
+                                        <field name="subject_3"/>
+                                        <field name="subject_4"/>
+                                        <field name="subject_5"/>
+                                        <field name="subject_6"/>
+                                        <field name="subject_7"/>
+                                        <field name="subject_8"/>
+                                        <field name="subject_9"/>
+                                        <field name="subject_10"/>
+                                        <field name="semster_degree"/>
+                                        <field name="level_degree"/>
+                                        <field name="note"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="import_result_tree" model="ir.ui.view">
+            <field name="name">ums.result.tree</field>
+            <field name="model">ums.import.result</field>
+            <field name="arch" type="xml">
+                <tree string="Imported Results">
+                    <field name="name"/>
+                    <field name="college"/>
+                    <field name="department"/>
+                    <field name="specialist"/>
+                    <field name="level"/>
+                    <field name="academic_year"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="import_result_action" model="ir.actions.act_window">
+            <field name="name">Imported Results</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ums.import.result</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Results , Import one
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                id="import_menu_parent"
+                name="Import Results"/>
+        <menuitem
+                name="Import Results"
+                id="import_result_menu"
+                parent="import_menu_parent"
+                action="import_result_action"
+                sequence="1"/>
+    </data>
+</odoo>

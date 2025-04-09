@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_ums_import_result,ums.import.result,model_ums_import_result,,1,1,1,1
+access_import_result_first,import.result.first,model_import_result_first,,1,1,1,1
+access_import_result_second,import.result.second,model_import_result_second,,1,1,1,1
+
+

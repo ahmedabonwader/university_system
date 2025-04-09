@@ -1,0 +1,275 @@
+<odoo>
+  <data>
+    <menuitem 
+      name="Configuration"
+      id="conf_menu" 
+      parent="auction_parent_menu"
+      sequence="4"/>
+
+    <menuitem name="Auctions" id="auction_conf_menu" parent="conf_menu" sequence="1"/>
+    <menuitem name="Assets" id="asset_conf_menu" parent="conf_menu" sequence="2"/>
+    <menuitem name="Other" id="other_conf_menu" parent="conf_menu" sequence="3"/>
+
+
+    
+    <record id="auction_type_tree" model="ir.ui.view">
+        <field name="name">Auction Types list</field>
+        <field name="model">auction.type</field>
+        <field name="arch" type="xml">
+            <tree string="Auctions Types" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="auction_type_action" model="ir.actions.act_window">
+        <field name="name">Auctions Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.type</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Auction type
+            </p>
+        </field>
+    </record>
+    <menuitem name="Auctions types" id="auction_type_menu" parent="auction_conf_menu" action="auction_type_action" sequence="1"/>
+
+    <record id="auction_source_form" model="ir.ui.view">
+        <field name="name">Auction source form</field>
+        <field name="model">auction.source</field>
+        <field name="arch" type="xml">
+            <form string="Auctions Sources">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="Terms and Conditions">
+                            <field name="terms"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="auction_source_tree" model="ir.ui.view">
+        <field name="name">Auction sources list</field>
+        <field name="model">auction.source</field>
+        <field name="arch" type="xml">
+            <tree string="Auctions Sources">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="auction_source_action" model="ir.actions.act_window">
+        <field name="name">Auctions Sources</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.source</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Auction source
+            </p>
+        </field>
+    </record>
+    <menuitem name="Auctions Sources" id="auction_source_menu" parent="auction_conf_menu" action="auction_source_action" sequence="2"/>
+
+
+
+    <record id="auction_platform_tree" model="ir.ui.view">
+        <field name="name">Auction platform list</field>
+        <field name="model">auction.platform</field>
+        <field name="arch" type="xml">
+            <tree string="Auction Platforms" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="auction_platform_action" model="ir.actions.act_window">
+        <field name="name">Auctions platform</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.platform</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Auction platform
+            </p>
+        </field>
+    </record>
+    <menuitem name="Auctions Platforms" id="auction_platform_menu" parent="auction_conf_menu" action="auction_platform_action" sequence="3"/>
+
+
+
+    
+
+
+   
+
+    <record id="asset_type_tree" model="ir.ui.view">
+        <field name="name">Assets types list</field>
+        <field name="model">auction.asset.type</field>
+        <field name="arch" type="xml">
+            <tree string="Assets types" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="asset_type_action" model="ir.actions.act_window">
+        <field name="name">Auctions Assets types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.asset.type</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Asset type
+            </p>
+        </field>
+    </record>
+    <menuitem name="Assets types" id="asset_type_menu" parent="asset_conf_menu" action="asset_type_action" sequence="1"/>
+
+
+    <record id="city_tree" model="ir.ui.view">
+        <field name="name">Cities list</field>
+        <field name="model">auction.asset.city</field>
+        <field name="arch" type="xml">
+            <tree string="Cities" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="city_action" model="ir.actions.act_window">
+        <field name="name">Cities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.asset.city</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a City
+            </p>
+        </field>
+    </record>
+    <menuitem name="Cities" id="city_menu" parent="asset_conf_menu" action="city_action" sequence="2"/>
+
+
+
+    <record id="neighborhood_tree" model="ir.ui.view">
+        <field name="name">neighborhoods list</field>
+        <field name="model">auction.asset.neighborhood</field>
+        <field name="arch" type="xml">
+            <tree string="Cities" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="neighborhood_action" model="ir.actions.act_window">
+        <field name="name">neighborhoods</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.asset.neighborhood</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a neighborhood
+            </p>
+        </field>
+    </record>
+    <menuitem name="Neighborhoods" id="neighborhood_menu" parent="asset_conf_menu" action="neighborhood_action" sequence="3"/>
+
+
+    <record id="location_tree" model="ir.ui.view">
+        <field name="name">Locations list</field>
+        <field name="model">auction.asset.location</field>
+        <field name="arch" type="xml">
+            <tree string="Locations" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="location_action" model="ir.actions.act_window">
+        <field name="name">Locations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.asset.location</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a location
+            </p>
+        </field>
+    </record>
+    <menuitem name="Locations" id="location_menu" parent="asset_conf_menu" action="location_action" sequence="4"/>
+
+
+
+    <record id="asset_status_tree" model="ir.ui.view">
+        <field name="name">Assets status list</field>
+        <field name="model">auction.asset.status</field>
+        <field name="arch" type="xml">
+            <tree string="Assets status" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="asset_status_action" model="ir.actions.act_window">
+        <field name="name">Assets status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.asset.status</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Asset status
+            </p>
+        </field>
+    </record>
+    <menuitem name="Assets status" id="asset_status_menu" parent="asset_conf_menu" action="asset_status_action" sequence="5"/>
+
+
+    <record id="doucment_type_tree" model="ir.ui.view">
+        <field name="name">Documents types list</field>
+        <field name="model">auction.document.type</field>
+        <field name="arch" type="xml">
+            <tree string="Documents types" editable="top">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="doucment_type_action" model="ir.actions.act_window">
+        <field name="name">Documents types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.document.type</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Documents types
+            </p>
+        </field>
+    </record>
+    <menuitem name="Documents types" id="document_type_menu" parent="asset_conf_menu" action="doucment_type_action" sequence="6"/>
+
+
+
+    <record id="tags_tree" model="ir.ui.view">
+        <field name="name">Tags list</field>
+        <field name="model">auction.tags</field>
+        <field name="arch" type="xml">
+            <tree string="Tags" editable="top">
+                <field name="name"/>
+                <field name="color" widget="color_picker"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tags_action" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">auction.tags</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a tag
+            </p>
+        </field>
+    </record>
+    <menuitem name="Tags" id="tags_menu" parent="other_conf_menu" action="tags_action" sequence="1"/>
+
+   
+
+  </data>
+</odoo>

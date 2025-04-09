@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="asset_wizard_view" model="ir.ui.view">
+           <field name="name">asset.wizard.view</field>
+           <field name="model">asset.wizard</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <form string="Select Assets">
+                    <group>
+                        <field name="auction_id" readonly="True"/>
+                    </group>
+                    <field name="asset_ids"/>
+                    <footer>
+                        <button name="select_asset" string="Validate" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-default" special="cancel"/>
+                    </footer>
+               </form>
+           </field>
+        </record>
+
+    
+    </data>
+</odoo>
